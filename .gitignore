@@ -1,0 +1,17 @@
+node_modules/
+dist/
+.env
+.env.local
+*.log
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Prisma
+prisma/migrations/dev.db*
+
+# Temporary files
+tmp/
+temp/

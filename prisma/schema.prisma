@@ -1,0 +1,163 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Facility {
+  id        String   @id @default(uuid())
+  name      String
+  phone     String?
+  timezone  String   @default("Europe/London")
+  settings  Json     @default("{}")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  residents Resident[]
+}
+
+model Resident {
+  id                 String    @id @default(uuid())
+  facilityId         String
+  firstName          String
+  lastName           String?
+  preferredName      String?
+  phoneNumber        String?
+  roomNumber         String?
+  status             String    @default("active") // active, paused, inactive
+
+  // Consent
+  callConsent        Boolean   @default(false)
+  callConsentDate    DateTime?
+  lifestoryConsent   Boolean   @default(false)
+  lifestoryConsentDate DateTime?
+
+  // Preferences
+  preferredCallTimes Json?     // { days: [1,3,5], hours: [10,14,18] }
+  communicationNotes String?   // e.g., "Hard of hearing in left ear"
+  favoriteTopics     String?
+  avoidTopics        String?
+
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+
+  facility  Facility  @relation(fields: [facilityId], references: [id], onDelete: Cascade)
+  calls     Call[]
+  memories  Memory[]
+  segments  StorySegment[]
+
+  @@index([facilityId, status])
+}
+
+model Call {
+  id              String    @id @default(uuid())
+  residentId      String
+  retellCallId    String?   @unique
+
+  callNumber      Int
+  status          String    @default("scheduled") // scheduled, initiating, in_progress, completed, failed, no_answer
+  isFirstCall     Boolean   @default(false)
+
+  // Timing
+  scheduledAt     DateTime?
+  startedAt       DateTime?
+  endedAt         DateTime?
+  durationSeconds Int?
+
+  // Audio
+  audioUrl        String?   // Vercel Blob URL
+  audioDurationMs Int?
+
+  // Transcript
+  transcript      Json?     // Raw Retell transcript array
+  transcriptText  String?   // Formatted text version
+
+  // Analysis (from Retell's call_analyzed webhook)
+  summary         String?
+  sentimentScore  Float?
+  topicsDiscussed Json?     @default("[]")
+
+  // Context audit trail
+  contextUsed     Json?     // What was sent to Retell
+
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  resident  Resident       @relation(fields: [residentId], references: [id], onDelete: Cascade)
+  memories  Memory[]       // Memories extracted from this call
+  segments  StorySegment[]
+
+  @@index([residentId, status])
+  @@index([retellCallId])
+}
+
+model Memory {
+  id              String    @id @default(uuid())
+  residentId      String
+  sourceCallId    String?
+
+  category        String    // family, career, hobbies, places, events, preferences, personality, health
+  key             String    // spouse_name, former_job, favorite_team, etc.
+  value           String    // The actual memory content
+
+  confidence      Float     @default(0.8)
+  timesMentioned  Int       @default(1)
+  firstMentionedAt DateTime @default(now())
+  lastMentionedAt DateTime  @default(now())
+
+  isActive        Boolean   @default(true)
+
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  resident   Resident @relation(fields: [residentId], references: [id], onDelete: Cascade)
+  sourceCall Call?    @relation(fields: [sourceCallId], references: [id], onDelete: SetNull)
+
+  @@unique([residentId, category, key])
+  @@index([residentId, isActive])
+}
+
+model StorySegment {
+  id              String    @id @default(uuid())
+  callId          String
+  residentId      String
+
+  // Timing within the call
+  startTimeMs     Int
+  endTimeMs       Int
+
+  // Content
+  transcriptText  String
+  speaker         String    // "resident" or "agent"
+
+  // Audio clip
+  audioClipUrl    String?   // Vercel Blob URL for extracted clip
+  audioClipStatus String    @default("pending") // pending, processing, completed, failed
+
+  // Categorization
+  category        String?   // family_story, career_memory, life_event, etc.
+  subcategory     String?
+  entities        Json?     // People, places, dates mentioned
+
+  // Quality scoring
+  storyQualityScore   Float?  // 0-1, how good is this as a story segment
+  emotionalIntensity  Float?  // 0-1, emotional weight
+  isCompleteStory     Boolean @default(false)
+
+  // Curation
+  isStarred       Boolean   @default(false)
+  isExcluded      Boolean   @default(false)
+  staffNotes      String?
+
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  call     Call     @relation(fields: [callId], references: [id], onDelete: Cascade)
+  resident Resident @relation(fields: [residentId], references: [id], onDelete: Cascade)
+
+  @@index([residentId, category])
+  @@index([callId])
+}
