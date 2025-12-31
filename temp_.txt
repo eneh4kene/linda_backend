@@ -1,0 +1,69 @@
+At what point should the lifestory book artifact be ready/produced?
+
+Good question. There are two triggers:
+
+---
+
+### Trigger 1: Content Threshold (Automatic)
+
+System flags a book as "ready for review" when:
+
+| Criteria | Minimum |
+|----------|---------|
+| Total starred segments | 12+ |
+| Chapters with content | 4+ different categories |
+| Total audio duration | 20+ minutes |
+| Calls completed | 8+ |
+
+At this point, there's enough material for a meaningful book. Staff gets notified to review and curate.
+
+---
+
+### Trigger 2: Family Request (Manual)
+
+Family can purchase anytime. If content is thin, you set expectations:
+
+- "We have 6 stories so far — enough for a Starter edition"
+- "With a few more weeks of calls, we'll have the full book"
+
+---
+
+### The Uncomfortable Truth
+
+Some residents are in care homes because time is short. You need a "minimum viable book" threshold that's:
+
+- **Low enough** to deliver something if health declines
+- **High enough** to feel like a real product
+
+**My recommendation:** 
+
+- **8 quality segments across 3+ chapters = shippable**
+- Position early purchases as "Volume 1" with updates included
+- Never wait for "complete" — there's no such thing
+
+---
+
+### Practical Status Flow
+
+```
+collecting     →  ready_for_review  →  in_production  →  delivered
+(auto)            (threshold met)      (family paid)     (sent)
+                         ↓
+                  staff curates
+                  creates chapters
+                  family notified
+```
+
+Staff notification: *"Margaret now has 14 story segments across 5 life chapters. Ready to offer the family."*
+
+---
+
+### When to Pitch the Family
+
+Best timing:
+- After 4-6 weeks of calls (enough content)
+- Near holidays (Christmas, Mother's Day — gift positioning)
+- When resident shares something profound (staff flags it)
+- If health changes (urgent but handled sensitively)
+
+Don't wait for perfection. The product is the voice, not the polish.

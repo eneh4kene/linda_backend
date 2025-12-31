@@ -6,12 +6,23 @@ import callsRouter from './routes/calls';
 import residentsRouter from './routes/residents';
 import facilitiesRouter from './routes/facilities';
 import webhooksRouter from './routes/webhooks';
+import inboundRouter from './routes/inbound';
+import segmentsRouter from './routes/segments';
+import lifebooksRouter from './routes/lifebooks';
+import lifebookRouter from './routes/lifebook';
+import readinessRouter from './routes/readiness';
+import booksRouter from './routes/books';
+import viewerRouter from './routes/viewer';
 
 const app = express();
 
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Serve static files (for lifebook demo)
+app.use(express.static('public'));
+app.use(express.static('.')); // Serve LifeStoryBook.jsx from root
 
 // Health check endpoint
 app.get('/health', async (_req, res) => {
@@ -41,9 +52,16 @@ app.get('/health', async (_req, res) => {
 
 // API Routes
 app.use('/api/calls', callsRouter);
+app.use('/api/residents', lifebookRouter); // Lifebook routes (includes /:residentId/lifebook)
 app.use('/api/residents', residentsRouter);
 app.use('/api/facilities', facilitiesRouter);
 app.use('/api/webhooks', webhooksRouter);
+app.use('/api/inbound', inboundRouter);
+app.use('/api/segments', segmentsRouter);
+app.use('/api/lifebooks', lifebooksRouter);
+app.use('/api/readiness', readinessRouter);
+app.use('/api/books', booksRouter);
+app.use('/viewer', viewerRouter);
 
 // 404 handler
 app.use((_req, res) => {

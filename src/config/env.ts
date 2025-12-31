@@ -1,4 +1,8 @@
+import { config } from 'dotenv';
 import { z } from 'zod';
+
+// Load .env file
+config();
 
 const envSchema = z.object({
   // Database
@@ -10,8 +14,9 @@ const envSchema = z.object({
   // Retell AI
   RETELL_API_KEY: z.string().min(1),
   RETELL_AGENT_ID: z.string().min(1),
-  RETELL_PHONE_NUMBER: z.string().min(1),
+  RETELL_PHONE_NUMBER: z.string().optional(), // Optional for test mode
   RETELL_WEBHOOK_SECRET: z.string().min(1),
+  RETELL_TEST_MODE: z.string().default('false'), // Enable test mode without real phone
 
   // Anthropic (Claude)
   ANTHROPIC_API_KEY: z.string().min(1),

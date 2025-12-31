@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { prisma } from '../lib/prisma';
 import { buildCallContext } from '../services/contextBuilder';
+import { renderSystemPrompt } from '../services/prompt';
 import { initiateCall } from '../services/retell';
 
 const router = Router();
@@ -30,8 +31,16 @@ router.post('/', async (req, res) => {
       return res.status(400).json({ error: 'Resident has not consented to calls' });
     }
 
-    if (!resident.phoneNumber) {
+    // Check phone number (unless in test mode)
+    const isTestMode = process.env.RETELL_TEST_MODE === 'true';
+    const phoneNumber = resident.phoneNumber || (isTestMode ? '+15555555555' : null);
+
+    if (!phoneNumber) {
       return res.status(400).json({ error: 'Resident has no phone number' });
+    }
+
+    if (isTestMode) {
+      console.log('🧪 TEST MODE: Using dummy phone number for testing');
     }
 
     // Build call context
@@ -49,10 +58,23 @@ router.post('/', async (req, res) => {
       },
     });
 
+    // Render System Prompt
+    const promptData = {
+      ...context.dynamicVariables,
+      mode_inbound: false,
+      mode_outbound: true,
+      // Pass raw memories array for template iteration
+      memories: context.rawContext?.memories || [],
+      last_call_summary: context.dynamicVariables.last_call_summary,
+      favorite_topics: context.dynamicVariables.favorite_topics,
+    };
+
+    const systemPrompt = renderSystemPrompt(promptData);
+
     // Initiate call with Retell
     const retellResponse = await initiateCall({
       residentId,
-      phoneNumber: resident.phoneNumber,
+      phoneNumber: phoneNumber,
       dynamicVariables: context.dynamicVariables,
       metadata: {
         dbCallId: call.id,
@@ -60,6 +82,7 @@ router.post('/', async (req, res) => {
         callNumber: context.metadata.callNumber,
         isFirstCall: context.metadata.isFirstCall,
       },
+      retell_llm_prompt: systemPrompt,
     });
 
     // Update call with Retell call ID

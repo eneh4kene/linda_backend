@@ -3,7 +3,7 @@ export interface RetellDynamicVariables {
   preferred_name: string;
   full_name: string;
   room_number: string;
-  memories: Array<{ category: string; value: string }>;
+  memories: string; // Formatted as multiline string for Retell
   favorite_topics: string;
   avoid_topics: string;
   communication_notes: string;
@@ -16,6 +16,7 @@ export interface RetellCreateCallRequest {
   from_number: string;
   retell_llm_dynamic_variables: RetellDynamicVariables;
   metadata: Record<string, any>;
+  retell_llm_prompt?: string; // Prompt override
 }
 
 export interface RetellCreateCallResponse {
@@ -84,6 +85,7 @@ export interface CallContext {
     isFirstCall: boolean;
     memoriesCount: number;
   };
+  rawContext?: any; // Rich context for local prompt rendering
 }
 
 // Preferred Call Times Type

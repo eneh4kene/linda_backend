@@ -16,16 +16,27 @@ export async function initiateCall(params: {
   phoneNumber: string;
   dynamicVariables: RetellDynamicVariables;
   metadata: Record<string, any>;
+  retell_llm_prompt?: string;
 }): Promise<RetellCreateCallResponse> {
+  // Use dummy phone number from env or fallback for test mode
+  const isTestMode = env.RETELL_TEST_MODE === 'true';
+  const fromNumber = env.RETELL_PHONE_NUMBER || (isTestMode ? '+15555550000' : '');
+
+  if (!fromNumber) {
+    throw new Error('RETELL_PHONE_NUMBER not configured and not in test mode');
+  }
+
   const requestBody: RetellCreateCallRequest = {
     agent_id: env.RETELL_AGENT_ID,
     to_number: params.phoneNumber,
-    from_number: env.RETELL_PHONE_NUMBER,
+    from_number: fromNumber,
     retell_llm_dynamic_variables: params.dynamicVariables,
     metadata: {
       ...params.metadata,
       residentId: params.residentId,
+      testMode: isTestMode,
     },
+    retell_llm_prompt: params.retell_llm_prompt,
   };
 
   const response = await fetch(`${RETELL_API_BASE}/create-phone-call`, {
@@ -44,6 +55,26 @@ export async function initiateCall(params: {
 
   const data = await response.json();
   return data as RetellCreateCallResponse;
+}
+
+/**
+ * Fetches full call details from Retell API including transcript with timestamps
+ */
+export async function getCallDetails(retellCallId: string): Promise<any> {
+  const response = await fetch(`${RETELL_API_BASE}/get-call/${retellCallId}`, {
+    method: 'GET',
+    headers: {
+      'Authorization': `Bearer ${env.RETELL_API_KEY}`,
+    },
+  });
+
+  if (!response.ok) {
+    const error = await response.text();
+    throw new Error(`Retell API error fetching call: ${response.status} - ${error}`);
+  }
+
+  const data = await response.json();
+  return data;
 }
 
 /**

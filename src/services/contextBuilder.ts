@@ -96,11 +96,12 @@ export async function buildCallContext(residentId: string): Promise<CallContext>
   const callNumber = completedCallsCount + 1;
   const isFirstCall = completedCallsCount === 0;
 
-  // 5. Format memories as array
-  const formattedMemories = memories.map((memory: { category: string; value: string }) => ({
-    category: formatCategoryName(memory.category),
-    value: memory.value,
-  }));
+  // 5. Format memories as string (Retell requires all dynamic variables to be strings)
+  const formattedMemories = memories
+    .map((memory: { category: string; value: string }) =>
+      `${formatCategoryName(memory.category)}: ${memory.value}`
+    )
+    .join('\n');
 
   // 6. Format last call summary
   let lastCallSummary = 'This is our first conversation.';
@@ -137,6 +138,12 @@ export async function buildCallContext(residentId: string): Promise<CallContext>
       callNumber,
       isFirstCall,
       memoriesCount: memories.length,
+    },
+    rawContext: {
+      memories,
+      resident,
+      lastCall,
+      completedCallsCount,
     },
   };
 }

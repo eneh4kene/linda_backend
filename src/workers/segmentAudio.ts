@@ -1,104 +1,10 @@
 import { exec } from 'child_process';
 import { promisify } from 'util';
 import { writeFile, unlink } from 'fs/promises';
-import { claude } from '../lib/claude';
 import { prisma } from '../lib/prisma';
 import { downloadAudio, uploadAudioClip } from '../services/storage';
-import { RetellTranscriptEntry, IdentifiedSegment } from '../types';
 
 const execAsync = promisify(exec);
-
-const SEGMENT_IDENTIFICATION_PROMPT = `Analyze this conversation transcript and identify segments where the resident shares meaningful stories, memories, or personal experiences worth preserving.
-
-Look for:
-- Complete stories with beginning, middle, end
-- Emotional moments
-- Family memories
-- Career highlights
-- Life events
-- Vivid descriptions of the past
-
-For each segment, provide:
-- start_ms: timestamp where segment begins
-- end_ms: timestamp where segment ends
-- category: family_story, career_memory, life_event, childhood_memory, relationship_story, achievement, hardship, daily_life
-- summary: brief description
-- quality_score: 0-1 (how complete/meaningful is this story)
-- emotional_intensity: 0-1
-- speaker: "resident" or "agent"
-- transcript_text: the actual text of the segment
-
-Return JSON array. Only include segments scoring > 0.6 quality.
-
-Transcript with timestamps:
-{{transcript}}`;
-
-/**
- * Identify story segments from transcript using Claude
- */
-export async function identifyStorySegments(
-  transcript: RetellTranscriptEntry[],
-  _fullText: string
-): Promise<IdentifiedSegment[]> {
-  try {
-    // Format transcript with timestamps
-    const formattedTranscript = transcript
-      .map((entry) => {
-        const speaker = entry.role === 'agent' ? 'Linda' : 'Resident';
-        return `[${entry.start_ms}ms - ${entry.end_ms}ms] ${speaker}: ${entry.content}`;
-      })
-      .join('\n');
-
-    const prompt = SEGMENT_IDENTIFICATION_PROMPT.replace('{{transcript}}', formattedTranscript);
-
-    const response = await claude.messages.create({
-      model: 'claude-3-5-sonnet-20241022',
-      max_tokens: 4096,
-      messages: [
-        {
-          role: 'user',
-          content: prompt,
-        },
-      ],
-    });
-
-    const content = response.content[0];
-    if (content.type !== 'text') {
-      throw new Error('Expected text response from Claude');
-    }
-
-    const text = content.text.trim();
-
-    // Extract JSON from response
-    let jsonText = text;
-    if (text.startsWith('```')) {
-      const match = text.match(/```(?:json)?\n?([\s\S]*?)\n?```/);
-      if (match) {
-        jsonText = match[1];
-      }
-    }
-
-    const segments: IdentifiedSegment[] = JSON.parse(jsonText);
-
-    if (!Array.isArray(segments)) {
-      console.warn('Claude response was not an array, returning empty segments');
-      return [];
-    }
-
-    // Filter by quality threshold
-    return segments.filter(
-      (s) =>
-        s.quality_score > 0.6 &&
-        s.start_ms !== undefined &&
-        s.end_ms !== undefined &&
-        s.category &&
-        s.transcript_text
-    );
-  } catch (error) {
-    console.error('Error identifying story segments:', error);
-    return [];
-  }
-}
 
 /**
  * Extract audio clip using FFmpeg
@@ -112,7 +18,10 @@ export async function extractAudioClip(segmentId: string): Promise<void> {
       },
     });
 
-    if (!segment || !segment.call.audioUrl) {
+    // Check for recording URL - Retell stores it in call.audioUrl or we might have recordingUrl
+    const recordingUrl = segment.call.audioUrl;
+
+    if (!segment || !recordingUrl) {
       throw new Error('Segment or audio URL not found');
     }
 
@@ -123,11 +32,11 @@ export async function extractAudioClip(segmentId: string): Promise<void> {
     });
 
     // Download full audio
-    console.log(`Downloading full audio from: ${segment.call.audioUrl}`);
-    const audioBuffer = await downloadAudio(segment.call.audioUrl);
+    console.log(`Downloading full audio from: ${recordingUrl}`);
+    const audioBuffer = await downloadAudio(recordingUrl);
 
-    // Save to temp file
-    const inputPath = `/tmp/${segment.callId}-input.wav`;
+    // Save to temp file - use segmentId to avoid race conditions when multiple segments are processed in parallel
+    const inputPath = `/tmp/${segmentId}-input.wav`;
     const outputPath = `/tmp/${segmentId}-output.mp3`;
 
     await writeFile(inputPath, audioBuffer);
