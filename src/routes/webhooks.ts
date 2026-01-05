@@ -4,6 +4,7 @@ import { prisma } from '../lib/prisma';
 import { queueProcessCall } from '../queues';
 import { downloadAudio, uploadAudio } from '../services/storage';
 import { RetellWebhookEvent } from '../types';
+import { emitCallStatusUpdate } from '../lib/websocket';
 
 const router = Router();
 
@@ -64,14 +65,35 @@ router.post('/retell', async (req, res) => {
     // Handle different event types
     switch (eventType) {
       case 'call_started': {
-        await prisma.call.update({
+        const updatedCall = await prisma.call.update({
           where: { id: finalDbCallId },
           data: {
             status: 'in_progress',
             startedAt: new Date(event.timestamp),
           },
+          include: {
+            resident: {
+              select: {
+                id: true,
+                facilityId: true,
+                firstName: true,
+                lastName: true,
+              },
+            },
+          },
         });
         console.log(`Call started: ${finalDbCallId}`);
+
+        // Emit WebSocket event
+        emitCallStatusUpdate(
+          updatedCall.id,
+          updatedCall.residentId,
+          updatedCall.resident.facilityId,
+          'in_progress',
+          {
+            residentName: `${updatedCall.resident.firstName} ${updatedCall.resident.lastName || ''}`.trim(),
+          }
+        );
         break;
       }
 
@@ -119,12 +141,34 @@ router.post('/retell', async (req, res) => {
           updateData.audioUrl = callData.recording_url;
         }
 
-        await prisma.call.update({
+        const updatedCall = await prisma.call.update({
           where: { id: finalDbCallId },
           data: updateData,
+          include: {
+            resident: {
+              select: {
+                id: true,
+                facilityId: true,
+                firstName: true,
+                lastName: true,
+              },
+            },
+          },
         });
 
         console.log(`Call ended: ${finalDbCallId} (${status})`);
+
+        // Emit WebSocket event
+        emitCallStatusUpdate(
+          updatedCall.id,
+          updatedCall.residentId,
+          updatedCall.resident.facilityId,
+          status,
+          {
+            residentName: `${updatedCall.resident.firstName} ${updatedCall.resident.lastName || ''}`.trim(),
+            durationSeconds: updatedCall.durationSeconds,
+          }
+        );
 
         // Download and store audio immediately (Retell URLs expire quickly!)
         if (status === 'completed' && callData.recording_url) {

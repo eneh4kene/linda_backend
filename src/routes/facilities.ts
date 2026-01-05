@@ -1,13 +1,14 @@
-import { Router } from 'express';
+import { Router, Response } from 'express';
 import { prisma } from '../lib/prisma';
+import { authenticate, authorize, AuthRequest } from '../middleware/auth';
 
 const router = Router();
 
 /**
  * POST /api/facilities
- * Create a new facility
+ * Create a new facility (ADMIN only - for onboarding new care homes)
  */
-router.post('/', async (req, res) => {
+router.post('/', authenticate, authorize('ADMIN'), async (req: AuthRequest, res: Response) => {
   try {
     const { name, phone, timezone, settings } = req.body;
 
@@ -37,10 +38,17 @@ router.post('/', async (req, res) => {
 /**
  * GET /api/facilities/:id
  * Get facility details with residents
+ * ADMIN: can view any facility
+ * MANAGER/STAFF: can only view their own facility
  */
-router.get('/:id', async (req, res) => {
+router.get('/:id', authenticate, async (req: AuthRequest, res: Response) => {
   try {
     const { id } = req.params;
+
+    // Check facility access
+    if (req.user?.role !== 'ADMIN' && req.user?.facilityId !== id) {
+      return res.status(403).json({ error: 'Access denied to this facility' });
+    }
 
     const facility = await prisma.facility.findUnique({
       where: { id },
@@ -68,10 +76,21 @@ router.get('/:id', async (req, res) => {
 /**
  * GET /api/facilities
  * List all facilities
+ * ADMIN: sees all facilities
+ * MANAGER/STAFF: only sees their own facility
  */
-router.get('/', async (_req, res) => {
+router.get('/', authenticate, async (req: AuthRequest, res: Response) => {
   try {
+    // Build where clause based on role
+    const where: any = {};
+
+    // Non-ADMIN users can only see their own facility
+    if (req.user?.role !== 'ADMIN' && req.user?.facilityId) {
+      where.id = req.user.facilityId;
+    }
+
     const facilities = await prisma.facility.findMany({
+      where,
       orderBy: { name: 'asc' },
       include: {
         _count: {
@@ -94,9 +113,9 @@ router.get('/', async (_req, res) => {
 
 /**
  * PATCH /api/facilities/:id
- * Update facility details
+ * Update facility details (ADMIN only)
  */
-router.patch('/:id', async (req, res) => {
+router.patch('/:id', authenticate, authorize('ADMIN'), async (req: AuthRequest, res: Response) => {
   try {
     const { id } = req.params;
     const { name, phone, timezone, settings } = req.body;
@@ -124,9 +143,9 @@ router.patch('/:id', async (req, res) => {
 
 /**
  * DELETE /api/facilities/:id
- * Delete a facility (will cascade delete residents and calls)
+ * Delete a facility (ADMIN only - will cascade delete residents and calls)
  */
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', authenticate, authorize('ADMIN'), async (req: AuthRequest, res: Response) => {
   try {
     const { id } = req.params;
 

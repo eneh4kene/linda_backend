@@ -28,6 +28,13 @@ const envSchema = z.object({
   PORT: z.string().default('3000'),
   NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
   API_BASE_URL: z.string().url(),
+
+  // Authentication
+  JWT_SECRET: z.string().min(32),
+  JWT_EXPIRES_IN: z.string().default('7d'),
+
+  // Frontend
+  FRONTEND_URL: z.string().url().optional(),
 });
 
 function validateEnv() {

@@ -1,5 +1,6 @@
-import { Router } from 'express';
+import { Router, Response } from 'express';
 import { prisma } from '../lib/prisma';
+import { authenticate, AuthRequest } from '../middleware/auth';
 
 const router = Router();
 
@@ -7,7 +8,7 @@ const router = Router();
  * POST /api/residents
  * Create a new resident
  */
-router.post('/', async (req, res) => {
+router.post('/', authenticate, async (req: AuthRequest, res: Response) => {
   try {
     const {
       facilityId,
@@ -28,6 +29,11 @@ router.post('/', async (req, res) => {
 
     if (!facilityId || !firstName) {
       return res.status(400).json({ error: 'facilityId and firstName are required' });
+    }
+
+    // Check facility access
+    if (req.user?.role !== 'ADMIN' && req.user?.facilityId !== facilityId) {
+      return res.status(403).json({ error: 'Access denied to this facility' });
     }
 
     // Verify facility exists
@@ -72,7 +78,7 @@ router.post('/', async (req, res) => {
  * GET /api/residents/:id
  * Get resident details including memories and recent calls
  */
-router.get('/:id', async (req, res) => {
+router.get('/:id', authenticate, async (req: AuthRequest, res: Response) => {
   try {
     const { id } = req.params;
 
@@ -100,6 +106,11 @@ router.get('/:id', async (req, res) => {
       return res.status(404).json({ error: 'Resident not found' });
     }
 
+    // Check facility access
+    if (req.user?.role !== 'ADMIN' && req.user?.facilityId !== resident.facilityId) {
+      return res.status(403).json({ error: 'Access denied to this resident' });
+    }
+
     return res.json(resident);
   } catch (error) {
     console.error('Error fetching resident:', error);
@@ -114,7 +125,7 @@ router.get('/:id', async (req, res) => {
  * PATCH /api/residents/:id
  * Update resident details
  */
-router.patch('/:id', async (req, res) => {
+router.patch('/:id', authenticate, async (req: AuthRequest, res: Response) => {
   try {
     const { id } = req.params;
     const {
@@ -133,6 +144,16 @@ router.patch('/:id', async (req, res) => {
       lifestoryConsentDate,
       preferredCallTimes,
     } = req.body;
+
+    // Check facility access first
+    const existingResident = await prisma.resident.findUnique({ where: { id } });
+    if (!existingResident) {
+      return res.status(404).json({ error: 'Resident not found' });
+    }
+
+    if (req.user?.role !== 'ADMIN' && req.user?.facilityId !== existingResident.facilityId) {
+      return res.status(403).json({ error: 'Access denied to this resident' });
+    }
 
     // Build update object with only provided fields
     const updateData: any = {};
@@ -171,12 +192,17 @@ router.patch('/:id', async (req, res) => {
  * GET /api/residents?facilityId=xxx
  * List residents for a facility
  */
-router.get('/', async (req, res) => {
+router.get('/', authenticate, async (req: AuthRequest, res: Response) => {
   try {
     const { facilityId } = req.query;
 
     if (!facilityId || typeof facilityId !== 'string') {
       return res.status(400).json({ error: 'facilityId query parameter is required' });
+    }
+
+    // Check facility access
+    if (req.user?.role !== 'ADMIN' && req.user?.facilityId !== facilityId) {
+      return res.status(403).json({ error: 'Access denied to this facility' });
     }
 
     const residents = await prisma.resident.findMany({

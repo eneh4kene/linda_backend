@@ -1,7 +1,13 @@
 import express from 'express';
+import { createServer } from 'http';
+import cors from 'cors';
 import { env } from './config/env';
 import { prisma } from './lib/prisma';
 import { redis } from './lib/redis';
+import { initializeWebSocket } from './lib/websocket';
+
+// Route imports
+import authRouter from './routes/auth';
 import callsRouter from './routes/calls';
 import residentsRouter from './routes/residents';
 import facilitiesRouter from './routes/facilities';
@@ -13,10 +19,23 @@ import lifebookRouter from './routes/lifebook';
 import readinessRouter from './routes/readiness';
 import booksRouter from './routes/books';
 import viewerRouter from './routes/viewer';
+import familyMembersRouter from './routes/family-members';
+import familyCheckInsRouter from './routes/family-checkins';
+import staffDashboardRouter from './routes/staff-dashboard';
+import schedulingRouter from './routes/scheduling';
+import exportsRouter from './routes/exports';
 
 const app = express();
+const httpServer = createServer(app);
+
+// Initialize WebSocket
+initializeWebSocket(httpServer);
 
 // Middleware
+app.use(cors({
+  origin: process.env.FRONTEND_URL || '*',
+  credentials: true,
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -51,6 +70,7 @@ app.get('/health', async (_req, res) => {
 });
 
 // API Routes
+app.use('/api/auth', authRouter);
 app.use('/api/calls', callsRouter);
 app.use('/api/residents', lifebookRouter); // Lifebook routes (includes /:residentId/lifebook)
 app.use('/api/residents', residentsRouter);
@@ -61,6 +81,11 @@ app.use('/api/segments', segmentsRouter);
 app.use('/api/lifebooks', lifebooksRouter);
 app.use('/api/readiness', readinessRouter);
 app.use('/api/books', booksRouter);
+app.use('/api/family-members', familyMembersRouter);
+app.use('/api/family-checkins', familyCheckInsRouter);
+app.use('/api/staff', staffDashboardRouter);
+app.use('/api/scheduling', schedulingRouter);
+app.use('/api/exports', exportsRouter);
 app.use('/viewer', viewerRouter);
 
 // 404 handler
@@ -79,8 +104,9 @@ app.use((err: Error, _req: express.Request, res: express.Response, _next: expres
 
 const PORT = parseInt(env.PORT, 10);
 
-app.listen(PORT, () => {
+httpServer.listen(PORT, () => {
   console.log(`🚀 Linda Backend running on port ${PORT}`);
   console.log(`📍 Health check: http://localhost:${PORT}/health`);
   console.log(`🌍 Environment: ${env.NODE_ENV}`);
+  console.log(`🔌 WebSocket server ready`);
 });

@@ -16,32 +16,55 @@ model Facility {
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
   residents Resident[]
+  users     User[]
+}
+
+model User {
+  id          String    @id @default(uuid())
+  email       String    @unique
+  password    String
+  firstName   String
+  lastName    String
+  role        UserRole  @default(STAFF)
+  facilityId  String?
+  isActive    Boolean   @default(true)
+  lastLoginAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  facility    Facility? @relation(fields: [facilityId], references: [id], onDelete: Cascade)
+
+  @@index([email])
+  @@index([facilityId])
 }
 
 model Resident {
-  id                   String         @id @default(uuid())
-  facilityId           String
-  firstName            String
-  lastName             String?
-  preferredName        String?
-  phoneNumber          String?
-  roomNumber           String?
-  status               String         @default("active")
-  callConsent          Boolean        @default(false)
-  callConsentDate      DateTime?
-  lifestoryConsent     Boolean        @default(false)
-  lifestoryConsentDate DateTime?
-  preferredCallTimes   Json?
-  communicationNotes   String?
-  favoriteTopics       String?
-  avoidTopics          String?
-  createdAt            DateTime       @default(now())
-  updatedAt            DateTime       @updatedAt
-  calls                Call[]
-  memories             Memory[]
-  facility             Facility       @relation(fields: [facilityId], references: [id], onDelete: Cascade)
-  segments             StorySegment[]
-  lifeStoryBook        LifeStoryBook?
+  id                       String          @id @default(uuid())
+  facilityId               String
+  firstName                String
+  lastName                 String?
+  preferredName            String?
+  phoneNumber              String?
+  roomNumber               String?
+  status                   String          @default("active")
+  callConsent              Boolean         @default(false)
+  callConsentDate          DateTime?
+  lifestoryConsent         Boolean         @default(false)
+  lifestoryConsentDate     DateTime?
+  preferredCallTimes       Json?
+  communicationNotes       String?
+  favoriteTopics           String?
+  avoidTopics              String?
+  createdAt                DateTime        @default(now())
+  updatedAt                DateTime        @updatedAt
+  familyCheckInConsent     Boolean         @default(false)
+  familyCheckInConsentDate DateTime?
+  calls                    Call[]
+  familyCheckIns           FamilyCheckIn[]
+  familyMembers            FamilyMember[]
+  lifeStoryBook            LifeStoryBook?
+  memories                 Memory[]
+  facility                 Facility        @relation(fields: [facilityId], references: [id], onDelete: Cascade)
+  segments                 StorySegment[]
 
   @@index([facilityId, status])
 }
@@ -98,7 +121,7 @@ model Memory {
 }
 
 model StorySegment {
-  id                 String            @id @default(uuid())
+  id                 String           @id @default(uuid())
   callId             String
   residentId         String
   startTimeMs        Int
@@ -106,32 +129,29 @@ model StorySegment {
   transcriptText     String
   speaker            String
   audioClipUrl       String?
-  audioClipStatus    String            @default("pending")
+  audioClipStatus    String           @default("pending")
   category           String?
   subcategory        String?
   entities           Json?
-  storyQualityScore  Int?              // Changed from Float to Int (1-5 scale)
-  qualityRationale   String?           // Why this score was assigned
+  storyQualityScore  Int?
   emotionalIntensity Float?
-  emotionalTone      String?
-  isCompleteStory    Boolean           @default(false)
-  isStarred          Boolean           @default(false)
-  isExcluded         Boolean           @default(false)
+  isCompleteStory    Boolean          @default(false)
+  isStarred          Boolean          @default(false)
+  isExcluded         Boolean          @default(false)
   staffNotes         String?
-  // Pull quotes (1-2 per segment)
-  pullQuotes         Json?             // Array of {quote: string, rationale: string, rank: number}
-  // Sensitivity flags for human review
-  sensitivityFlags   Json?             // Array of flag types
-  // Key details extraction
-  keyPeople          Json?             // Array of person names mentioned
-  keyPlaces          Json?             // Array of places mentioned
-  keyDates           Json?             // Array of dates mentioned
-  keyObjects         Json?             // Array of significant objects mentioned
-  createdAt          DateTime          @default(now())
-  updatedAt          DateTime          @updatedAt
-  call               Call              @relation(fields: [callId], references: [id], onDelete: Cascade)
-  resident           Resident          @relation(fields: [residentId], references: [id], onDelete: Cascade)
+  createdAt          DateTime         @default(now())
+  updatedAt          DateTime         @updatedAt
+  emotionalTone      String?
+  keyDates           Json?
+  keyObjects         Json?
+  keyPeople          Json?
+  keyPlaces          Json?
+  pullQuotes         Json?
+  qualityRationale   String?
+  sensitivityFlags   Json?
   lifeStoryEntries   LifeStoryEntry[]
+  call               Call             @relation(fields: [callId], references: [id], onDelete: Cascade)
+  resident           Resident         @relation(fields: [residentId], references: [id], onDelete: Cascade)
 
   @@index([residentId, category])
   @@index([callId])
@@ -141,63 +161,55 @@ model StorySegment {
 model LifeStoryBook {
   id            String             @id @default(uuid())
   residentId    String             @unique
-  status        String             @default("collecting") // collecting, ready_for_review, in_review, approved, in_production, delivered
+  status        String             @default("collecting")
   title         String?
   coverImageUrl String?
-  tier          String?            // minimal, thin, standard, full
+  tier          String?
   price         Float?
   familyName    String?
   familyEmail   String?
   familyPhone   String?
   purchasedAt   DateTime?
   deliveredAt   DateTime?
-  // Book assembly and content (Stage 3 & 4 output)
-  assemblyData  Json?              // BookAssembly structure
-  contentData   Json?              // GeneratedBookContent structure
-  // Review tracking (Stage 5)
-  reviewStatus  String?            // pending, approved, needs_revision, escalated
-  reviewedBy    String?            // Reviewer name/ID
-  reviewedAt    DateTime?
-  reviewNotes   String?            // Review feedback
   createdAt     DateTime           @default(now())
   updatedAt     DateTime           @updatedAt
+  assemblyData  Json?
+  contentData   Json?
+  reviewNotes   String?
+  reviewStatus  String?
+  reviewedAt    DateTime?
+  reviewedBy    String?
+  reviews       BookReview[]
   resident      Resident           @relation(fields: [residentId], references: [id], onDelete: Cascade)
   chapters      LifeStoryChapter[]
-  reviews       BookReview[]
 }
 
 model BookReview {
-  id                    String        @id @default(uuid())
-  bookId                String
-  reviewerName          String
-  reviewDate            DateTime      @default(now())
-  // Content checks
-  transcriptsAccurate   Boolean       @default(false)
-  pullQuotesVerbatim    Boolean       @default(false)
-  chapterAssignments    Boolean       @default(false)
-  storySequence         Boolean       @default(false)
-  noRedundancy          Boolean       @default(false)
-  // Sensitivity checks
-  sensitivityAddressed  Boolean       @default(false)
-  chapter5Confirmed     Boolean       @default(false)
-  // Quality checks
-  tierAppropriate       Boolean       @default(false)
-  pageAllocationBalanced Boolean      @default(false)
-  noThinChapters        Boolean       @default(false)
-  chapter5Present       Boolean       @default(false)
-  // Tone checks
-  framingWarm           Boolean       @default(false)
-  noCliches             Boolean       @default(false)
-  voicePreserved        Boolean       @default(false)
-  titlesEvocative       Boolean       @default(false)
-  // Technical checks
-  audioAccessible       Boolean       @default(false)
-  qrCodesGenerate       Boolean       @default(false)
-  // Final decision
-  decision              String        // approved, needs_revision, escalate
-  notes                 String?
-  createdAt             DateTime      @default(now())
-  book                  LifeStoryBook @relation(fields: [bookId], references: [id], onDelete: Cascade)
+  id                     String        @id @default(uuid())
+  bookId                 String
+  reviewerName           String
+  reviewDate             DateTime      @default(now())
+  transcriptsAccurate    Boolean       @default(false)
+  pullQuotesVerbatim     Boolean       @default(false)
+  chapterAssignments     Boolean       @default(false)
+  storySequence          Boolean       @default(false)
+  noRedundancy           Boolean       @default(false)
+  sensitivityAddressed   Boolean       @default(false)
+  chapter5Confirmed      Boolean       @default(false)
+  tierAppropriate        Boolean       @default(false)
+  pageAllocationBalanced Boolean       @default(false)
+  noThinChapters         Boolean       @default(false)
+  chapter5Present        Boolean       @default(false)
+  framingWarm            Boolean       @default(false)
+  noCliches              Boolean       @default(false)
+  voicePreserved         Boolean       @default(false)
+  titlesEvocative        Boolean       @default(false)
+  audioAccessible        Boolean       @default(false)
+  qrCodesGenerate        Boolean       @default(false)
+  decision               String
+  notes                  String?
+  createdAt              DateTime      @default(now())
+  book                   LifeStoryBook @relation(fields: [bookId], references: [id], onDelete: Cascade)
 
   @@index([bookId])
 }
@@ -229,6 +241,66 @@ model LifeStoryEntry {
   segment          StorySegment     @relation(fields: [segmentId], references: [id])
 
   @@index([chapterId, orderIndex])
+}
+
+model FamilyMember {
+  id                 String          @id @default(uuid())
+  residentId         String
+  firstName          String
+  lastName           String
+  relationship       String
+  phoneNumber        String          @unique
+  email              String?
+  canReceiveCheckIns Boolean         @default(false)
+  canAccessStarred   Boolean         @default(false)
+  phoneVerified      Boolean         @default(false)
+  phoneVerifiedAt    DateTime?
+  verificationCode   String?
+  verificationExpiry DateTime?
+  notes              String?
+  createdAt          DateTime        @default(now())
+  updatedAt          DateTime        @updatedAt
+  checkIns           FamilyCheckIn[]
+  resident           Resident        @relation(fields: [residentId], references: [id], onDelete: Cascade)
+
+  @@index([residentId])
+  @@index([phoneNumber])
+}
+
+model FamilyCheckIn {
+  id               String       @id @default(uuid())
+  familyMemberId   String
+  residentId       String
+  retellCallId     String?      @unique
+  status           String       @default("pending")
+  startedAt        DateTime?
+  endedAt          DateTime?
+  durationSeconds  Int?
+  periodStartDate  DateTime?
+  periodEndDate    DateTime?
+  moodSummary      String?
+  topicsDiscussed  Json?
+  concernsRaised   Json?
+  starredMoments   Json?
+  generatedScript  String?
+  generatedAt      DateTime?
+  generationModel  String?
+  generationTokens Int?
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+  callsCovered     Int?
+  familyMember     FamilyMember @relation(fields: [familyMemberId], references: [id], onDelete: Cascade)
+  resident         Resident     @relation(fields: [residentId], references: [id], onDelete: Cascade)
+
+  @@index([familyMemberId])
+  @@index([residentId])
+  @@index([retellCallId])
+}
+
+enum UserRole {
+  ADMIN
+  MANAGER
+  STAFF
 }
 
 enum CallDirection {
