@@ -231,7 +231,7 @@ router.get('/', authenticate, async (req: AuthRequest, res: Response) => {
 
 /**
  * DELETE /api/residents/:id
- * Delete a resident (ADMIN only)
+ * Delete a resident (ADMIN and MANAGER)
  */
 router.delete('/:id', authenticate, async (req: AuthRequest, res: Response) => {
   try {
@@ -247,9 +247,13 @@ router.delete('/:id', authenticate, async (req: AuthRequest, res: Response) => {
       return res.status(404).json({ error: 'Resident not found' });
     }
 
-    // Only ADMIN can delete residents
-    if (req.user?.role !== 'ADMIN') {
-      return res.status(403).json({ error: 'Only administrators can delete residents' });
+    // ADMIN can delete any resident, MANAGER can only delete residents in their facility
+    if (req.user?.role === 'STAFF') {
+      return res.status(403).json({ error: 'Staff members cannot delete residents' });
+    }
+
+    if (req.user?.role === 'MANAGER' && req.user?.facilityId !== resident.facilityId) {
+      return res.status(403).json({ error: 'You can only delete residents in your own facility' });
     }
 
     // Delete resident (cascade will delete related data)
