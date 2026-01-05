@@ -24,6 +24,8 @@ router.post('/', authenticate, async (req: AuthRequest, res: Response) => {
       callConsentDate,
       lifestoryConsent,
       lifestoryConsentDate,
+      familyCheckInConsent,
+      familyCheckInConsentDate,
       preferredCallTimes,
     } = req.body;
 
@@ -60,6 +62,8 @@ router.post('/', authenticate, async (req: AuthRequest, res: Response) => {
         callConsentDate: callConsentDate ? new Date(callConsentDate) : null,
         lifestoryConsent: lifestoryConsent || false,
         lifestoryConsentDate: lifestoryConsentDate ? new Date(lifestoryConsentDate) : null,
+        familyCheckInConsent: familyCheckInConsent || false,
+        familyCheckInConsentDate: familyCheckInConsentDate ? new Date(familyCheckInConsentDate) : null,
         preferredCallTimes: preferredCallTimes || null,
       },
     });
@@ -142,6 +146,8 @@ router.patch('/:id', authenticate, async (req: AuthRequest, res: Response) => {
       callConsentDate,
       lifestoryConsent,
       lifestoryConsentDate,
+      familyCheckInConsent,
+      familyCheckInConsentDate,
       preferredCallTimes,
     } = req.body;
 
@@ -171,6 +177,9 @@ router.patch('/:id', authenticate, async (req: AuthRequest, res: Response) => {
     if (lifestoryConsent !== undefined) updateData.lifestoryConsent = lifestoryConsent;
     if (lifestoryConsentDate !== undefined)
       updateData.lifestoryConsentDate = new Date(lifestoryConsentDate);
+    if (familyCheckInConsent !== undefined) updateData.familyCheckInConsent = familyCheckInConsent;
+    if (familyCheckInConsentDate !== undefined)
+      updateData.familyCheckInConsentDate = new Date(familyCheckInConsentDate);
     if (preferredCallTimes !== undefined) updateData.preferredCallTimes = preferredCallTimes;
 
     const resident = await prisma.resident.update({
