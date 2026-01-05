@@ -229,4 +229,48 @@ router.get('/', authenticate, async (req: AuthRequest, res: Response) => {
   }
 });
 
+/**
+ * DELETE /api/residents/:id
+ * Delete a resident (ADMIN only)
+ */
+router.delete('/:id', authenticate, async (req: AuthRequest, res: Response) => {
+  try {
+    const { id } = req.params;
+
+    // Get resident to check facility access
+    const resident = await prisma.resident.findUnique({
+      where: { id },
+      select: { id: true, facilityId: true, firstName: true, lastName: true },
+    });
+
+    if (!resident) {
+      return res.status(404).json({ error: 'Resident not found' });
+    }
+
+    // Only ADMIN can delete residents
+    if (req.user?.role !== 'ADMIN') {
+      return res.status(403).json({ error: 'Only administrators can delete residents' });
+    }
+
+    // Delete resident (cascade will delete related data)
+    await prisma.resident.delete({
+      where: { id },
+    });
+
+    return res.json({
+      message: 'Resident deleted successfully',
+      resident: {
+        id: resident.id,
+        name: `${resident.firstName} ${resident.lastName || ''}`.trim(),
+      },
+    });
+  } catch (error) {
+    console.error('Error deleting resident:', error);
+    return res.status(500).json({
+      error: 'Failed to delete resident',
+      details: error instanceof Error ? error.message : undefined,
+    });
+  }
+});
+
 export default router;
