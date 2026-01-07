@@ -60,7 +60,7 @@ router.post('/', authenticate, async (req: AuthRequest, res: Response) => {
     }
 
     const familyMember = await prisma.familyMember.create({
-      data,
+      data: data as any,
       include: {
         resident: {
           select: {

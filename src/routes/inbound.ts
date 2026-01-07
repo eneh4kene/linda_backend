@@ -2,7 +2,6 @@ import { Router } from 'express';
 import { prisma } from '../lib/prisma';
 import { buildCallContext } from '../services/contextBuilder';
 import { renderSystemPrompt } from '../services/prompt';
-import { RetellDynamicVariables } from '../types';
 import { generateFamilyCheckInSummary } from '../services/familyCheckInSummary';
 import { notifyStaffOfConcerns } from '../services/concernNotifications';
 
@@ -201,8 +200,6 @@ async function handleResidentCall(resident: any, call_id: string, res: any) {
     // Render System Prompt using Handlebars
     const promptData = {
         ...context.dynamicVariables,
-        mode_inbound: true,
-        mode_outbound: false,
         memories: context.rawContext?.memories || [],
         last_call_summary: context.dynamicVariables.last_call_summary,
         favorite_topics: context.dynamicVariables.favorite_topics,

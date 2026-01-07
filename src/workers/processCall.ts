@@ -151,7 +151,7 @@ export async function processCall(callId: string): Promise<void> {
               isCompleteStory: segment.isCompleteStory,
               audioClipStatus: 'pending',
               // New fields from enhanced extraction
-              pullQuotes: segment.pullQuotes || [],
+              pullQuotes: (segment.pullQuotes || []) as any,
               sensitivityFlags: segment.sensitivityFlags || [],
               keyPeople: segment.keyPeople || [],
               keyPlaces: segment.keyPlaces || [],

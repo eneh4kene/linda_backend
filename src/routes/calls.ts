@@ -61,8 +61,6 @@ router.post('/', async (req, res) => {
     // Render System Prompt
     const promptData = {
       ...context.dynamicVariables,
-      mode_inbound: false,
-      mode_outbound: true,
       // Pass raw memories array for template iteration
       memories: context.rawContext?.memories || [],
       last_call_summary: context.dynamicVariables.last_call_summary,

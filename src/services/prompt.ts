@@ -26,7 +26,7 @@ function getTemplate(): Handlebars.TemplateDelegate {
 /**
  * Renders the system prompt for a specific call context
  */
-export function renderSystemPrompt(context: CallContext['dynamicVariables'] & { mode_outbound: boolean; mode_inbound: boolean }): string {
+export function renderSystemPrompt(context: any): string {
   const template = getTemplate();
   return template(context);
 }

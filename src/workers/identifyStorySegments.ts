@@ -301,8 +301,6 @@ Do not create segments with timestamps beyond the audio duration.`;
     return validSegments;
   } catch (error) {
     console.error('Error identifying story segments:', error);
-    // Log first 200 chars of the response for debugging
-    console.error(`Response preview: ${text.substring(0, 200)}...`);
     // Don't throw - just return empty array to allow processing to continue
     return [];
   }
