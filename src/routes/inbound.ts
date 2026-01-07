@@ -178,7 +178,10 @@ async function handleFamilyCheckInCall(familyMember: any, call_id: string, res: 
 async function handleResidentCall(resident: any, call_id: string, res: any) {
     // Build Context (Inbound Mode)
     console.log(`✅ Building conversation context...`);
-    const context = await buildCallContext(resident.id);
+    const context = await buildCallContext(resident.id, {
+        isInbound: true,
+        callTime: new Date(),
+    });
 
     // Create Call Record
     const call = await prisma.call.create({

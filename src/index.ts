@@ -24,6 +24,9 @@ import familyCheckInsRouter from './routes/family-checkins';
 import staffDashboardRouter from './routes/staff-dashboard';
 import schedulingRouter from './routes/scheduling';
 import exportsRouter from './routes/exports';
+import patternsRouter from './routes/patterns';
+import eventsRouter from './routes/events';
+import callbacksRouter from './routes/callbacks';
 
 const app = express();
 const httpServer = createServer(app);
@@ -86,6 +89,9 @@ app.use('/api/family-checkins', familyCheckInsRouter);
 app.use('/api/staff', staffDashboardRouter);
 app.use('/api/scheduling', schedulingRouter);
 app.use('/api/exports', exportsRouter);
+app.use('/api/patterns', patternsRouter);
+app.use('/api/events', eventsRouter);
+app.use('/api/callbacks', callbacksRouter);
 app.use('/viewer', viewerRouter);
 
 // 404 handler

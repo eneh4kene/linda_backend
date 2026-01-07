@@ -1,13 +1,53 @@
 // Retell API Types
 export interface RetellDynamicVariables {
+  // Basic resident info
   preferred_name: string;
   full_name: string;
   room_number: string;
+  communication_notes: string;
+
+  // Memories & preferences
   memories: string; // Formatted as multiline string for Retell
   favorite_topics: string;
   avoid_topics: string;
-  communication_notes: string;
+
+  // Last call context
   last_call_summary: string;
+  last_call_date?: string;
+  last_call_energy?: string;
+  last_call_tone?: string;
+  last_call_notes?: string;
+
+  // Memory Layer - Resident Pattern
+  personality_summary?: string;
+  approaches_that_work?: string; // JSON array as string
+  approaches_to_avoid?: string; // JSON array as string
+  usually_needs_warmup?: string; // "true" or "false"
+  warmup_notes?: string;
+  typical_warmup_minutes?: string;
+  conversational_preferences?: string; // JSON object as string
+  typical_energy?: string;
+  typical_tone?: string;
+  typical_receptiveness?: string;
+  key_people?: string; // JSON array as string
+  temporal_patterns?: string; // JSON array as string
+  sensitive_topics?: string; // JSON array as string
+
+  // Memory Layer - Events & Callbacks
+  upcoming_events?: string; // JSON array as string
+  callbacks?: string; // JSON array as string
+
+  // Inbound-specific
+  call_time?: string; // Current time for inbound calls
+  call_context?: string; // Why they might be calling
+  recent_context?: string; // Recent events that might explain the call
+
+  // Mode flags (for conditional rendering)
+  mode_outbound?: string; // "true" or "false"
+  mode_inbound?: string; // "true" or "false"
+
+  // Legacy field (kept for backward compatibility)
+  memory_layer_context?: string;
 }
 
 export interface RetellCreateCallRequest {
@@ -91,5 +131,23 @@ export interface CallContext {
 // Preferred Call Times Type
 export interface PreferredCallTimes {
   days: number[]; // 0-6 (Sunday-Saturday)
-  hours: number[]; // 0-23
+  hours: number[]; // 0-23 (for backward compatibility)
+  timeWindows?: TimeWindow[]; // Optional time windows for more flexibility
+}
+
+export interface TimeWindow {
+  start: string; // HH:mm format (e.g., "14:00")
+  end: string;   // HH:mm format (e.g., "16:00")
+}
+
+export type CallStatus = 'active' | 'paused' | 'ended';
+
+export interface SchedulingContext {
+  residentId: string;
+  targetCallsThisWeek: number;
+  callsMadeThisWeek: number;
+  lastCallDate: Date | null;
+  daysSinceLastCall: number;
+  isDue: boolean;
+  reason?: string;
 }

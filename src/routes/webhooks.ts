@@ -158,6 +158,15 @@ router.post('/retell', async (req, res) => {
 
         console.log(`Call ended: ${finalDbCallId} (${status})`);
 
+        // Update resident's lastInboundCallDate if this was an inbound call
+        if (status === 'completed' && updatedCall.direction === 'INBOUND') {
+          await prisma.resident.update({
+            where: { id: updatedCall.residentId },
+            data: { lastInboundCallDate: updatedCall.endedAt },
+          });
+          console.log(`Updated lastInboundCallDate for resident ${updatedCall.residentId}`);
+        }
+
         // Emit WebSocket event
         emitCallStatusUpdate(
           updatedCall.id,

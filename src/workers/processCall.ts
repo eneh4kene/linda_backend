@@ -5,14 +5,16 @@ import { identifyStorySegments } from './identifyStorySegments';
 import { queueExtractAudioClip } from '../queues';
 import { getCallDetails } from '../services/retell';
 import { RetellTranscriptEntry } from '../types';
+import { processCall as runPostCallAnalysis } from '../services/postCallAnalysis';
 
 /**
  * Main post-call processing worker
  * Handles:
  * 1. Audio download and storage
- * 2. Memory extraction
+ * 2. Memory extraction (legacy)
  * 3. Story segment identification
  * 4. Queueing audio clip extraction
+ * 5. Post-call analysis (Memory Layer Phase 1)
  */
 export async function processCall(callId: string): Promise<void> {
   console.log(`\n========================================`);
@@ -178,6 +180,20 @@ export async function processCall(callId: string): Promise<void> {
       }
     } else {
       console.log('No timestamped transcript available, skipping segment identification');
+    }
+  }
+
+  // Step 4: Run post-call analysis (Memory Layer Phase 1)
+  // This extracts call state, anticipated events, callbacks, and updates resident patterns
+  if (call.transcriptText) {
+    try {
+      console.log(`\n--- Running post-call analysis (Memory Layer Phase 1) ---`);
+      await runPostCallAnalysis(callId);
+      console.log('Post-call analysis completed successfully');
+    } catch (error) {
+      console.error('Error in post-call analysis:', error);
+      // Don't fail the entire job if analysis fails
+      // The call will still be marked as processed for other features
     }
   }
 

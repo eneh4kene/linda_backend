@@ -282,6 +282,14 @@ Preferred name: {{preferred_name}}
 *Consider: Has anything happened recently that might explain why they're calling? Family visit that didn't happen? Health news? Anniversary or birthday? Time of day?*
 {{/if}}
 
+{{#if memory_layer_context}}
+---
+
+{{{memory_layer_context}}}
+
+---
+{{/if}}
+
 ---
 
 # CONVERSATION FLOW

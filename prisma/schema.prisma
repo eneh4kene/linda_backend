@@ -38,65 +38,89 @@ model User {
 }
 
 model Resident {
-  id                       String          @id @default(uuid())
+  id                       String             @id @default(uuid())
   facilityId               String
   firstName                String
   lastName                 String?
   preferredName            String?
   phoneNumber              String?
   roomNumber               String?
-  status                   String          @default("active")
-  callConsent              Boolean         @default(false)
+  status                   String             @default("active")
+  callConsent              Boolean            @default(false)
   callConsentDate          DateTime?
-  lifestoryConsent         Boolean         @default(false)
+  lifestoryConsent         Boolean            @default(false)
   lifestoryConsentDate     DateTime?
   preferredCallTimes       Json?
   communicationNotes       String?
   favoriteTopics           String?
   avoidTopics              String?
-  createdAt                DateTime        @default(now())
-  updatedAt                DateTime        @updatedAt
-  familyCheckInConsent     Boolean         @default(false)
+  createdAt                DateTime           @default(now())
+  updatedAt                DateTime           @updatedAt
+  familyCheckInConsent     Boolean            @default(false)
   familyCheckInConsentDate DateTime?
+  // Enhanced scheduling fields (Phase 1)
+  targetCallsPerWeek       Int                @default(2)
+  minDaysBetweenCalls      Int                @default(2)
+  maxDaysBetweenCalls      Int                @default(5)
+  callStatus               String             @default("active") // 'active' | 'paused' | 'ended'
+  callPauseReason          String?
+  callPausedAt             DateTime?
+  callPausedUntil          DateTime?
+  lastOutboundCallDate     DateTime?
+  lastInboundCallDate      DateTime?
+  nextSuggestedCallDate    DateTime?
+  unavailableUntil         DateTime?
+  unavailabilityReason     String?
   calls                    Call[]
   familyCheckIns           FamilyCheckIn[]
   familyMembers            FamilyMember[]
   lifeStoryBook            LifeStoryBook?
   memories                 Memory[]
-  facility                 Facility        @relation(fields: [facilityId], references: [id], onDelete: Cascade)
+  facility                 Facility           @relation(fields: [facilityId], references: [id], onDelete: Cascade)
   segments                 StorySegment[]
+  callStates               CallState[]
+  pattern                  ResidentPattern?
+  anticipatedEvents        AnticipatedEvent[]
+  callbacks                Callback[]
 
   @@index([facilityId, status])
+  @@index([callStatus, nextSuggestedCallDate])
 }
 
 model Call {
-  id              String         @id @default(uuid())
-  residentId      String
-  retellCallId    String?        @unique
-  callNumber      Int
-  status          String         @default("scheduled")
-  isFirstCall     Boolean        @default(false)
-  scheduledAt     DateTime?
-  startedAt       DateTime?
-  endedAt         DateTime?
-  durationSeconds Int?
-  audioUrl        String?
-  audioDurationMs Int?
-  transcript      Json?
-  transcriptText  String?
-  summary         String?
-  sentimentScore  Float?
-  topicsDiscussed Json?          @default("[]")
-  contextUsed     Json?
-  createdAt       DateTime       @default(now())
-  updatedAt       DateTime       @updatedAt
-  direction       CallDirection  @default(OUTBOUND)
-  resident        Resident       @relation(fields: [residentId], references: [id], onDelete: Cascade)
-  memories        Memory[]
-  segments        StorySegment[]
+  id                String             @id @default(uuid())
+  residentId        String
+  retellCallId      String?            @unique
+  callNumber        Int
+  status            String             @default("scheduled")
+  isFirstCall       Boolean            @default(false)
+  scheduledAt       DateTime?
+  startedAt         DateTime?
+  endedAt           DateTime?
+  durationSeconds   Int?
+  audioUrl          String?
+  audioDurationMs   Int?
+  transcript        Json?
+  transcriptText    String?
+  summary           String?
+  sentimentScore    Float?
+  topicsDiscussed   Json?              @default("[]")
+  contextUsed       Json?
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  direction         CallDirection      @default(OUTBOUND)
+  processed         Boolean            @default(false)
+  processedAt       DateTime?
+  resident          Resident           @relation(fields: [residentId], references: [id], onDelete: Cascade)
+  memories          Memory[]
+  segments          StorySegment[]
+  callState         CallState?
+  anticipatedEvents AnticipatedEvent[]
+  callbacks         Callback[]
 
   @@index([residentId, status])
   @@index([retellCallId])
+  @@index([processed])
 }
 
 model Memory {
@@ -295,6 +319,100 @@ model FamilyCheckIn {
   @@index([familyMemberId])
   @@index([residentId])
   @@index([retellCallId])
+}
+
+// =============================================================================
+// MEMORY LAYER - Phase 1 Implementation
+// =============================================================================
+
+model CallState {
+  id                      String   @id @default(uuid())
+  callId                  String   @unique
+  residentId              String
+  recordedAt              DateTime @default(now())
+  energyLevel             String?  // 'high' | 'medium' | 'low'
+  emotionalTone           String?  // 'bright' | 'neutral' | 'melancholy' | 'anxious' | 'irritable'
+  receptiveness           String?  // 'very_open' | 'open' | 'guarded' | 'tired' | 'resistant'
+  warmupObserved          Boolean  @default(false)
+  warmupDurationMinutes   Int?
+  respondedWellTo         Json     @default("[]") // Array of approaches that worked
+  didntLand               Json     @default("[]") // Array of approaches that didn't work
+  topicsEngaged           Json     @default("[]") // Array of topics that sparked engagement
+  topicsAvoided           Json     @default("[]") // Array of topics deflected
+  emotionalPeaks          Json     @default("[]") // Array of {type, context}
+  contextualFactors       Json     @default("[]") // Array of context strings
+  notes                   String?
+  createdAt               DateTime @default(now())
+  call                    Call     @relation(fields: [callId], references: [id], onDelete: Cascade)
+  resident                Resident @relation(fields: [residentId], references: [id], onDelete: Cascade)
+
+  @@index([residentId, recordedAt])
+}
+
+model ResidentPattern {
+  id                       String   @id @default(uuid())
+  residentId               String   @unique
+  typicalEnergy            String?  // 'high' | 'medium' | 'low'
+  typicalTone              String?  // 'bright' | 'neutral' | 'melancholy'
+  typicalReceptiveness     String?  // 'very_open' | 'open' | 'guarded'
+  usuallyNeedsWarmup       Boolean  @default(false)
+  typicalWarmupMinutes     Int?
+  warmupNotes              String?
+  approachesThatWork       Json     @default("[]") // Array of approach strings
+  approachesToAvoid        Json     @default("[]") // Array of approach strings
+  favoriteTopics           Json     @default("[]") // Array of topic strings
+  sensitiveTopics          Json     @default("[]") // Array of topic strings
+  temporalPatterns         Json     @default("[]") // Array of {pattern, description}
+  keyPeople                Json     @default("[]") // Array of {name, relationship, notes}
+  conversationalPreferences Json    @default("{}") // Object with pace, depth, humour, etc.
+  personalitySummary       String?  // Free-form summary for prompt
+  callsAnalyzed            Int      @default(0)
+  updatedAt                DateTime @updatedAt
+  createdAt                DateTime @default(now())
+  resident                 Resident @relation(fields: [residentId], references: [id], onDelete: Cascade)
+
+  @@index([residentId])
+}
+
+model AnticipatedEvent {
+  id                String    @id @default(uuid())
+  residentId        String
+  sourceCallId      String?
+  eventType         String    // 'visit' | 'appointment' | 'birthday' | 'anniversary' | 'holiday' | 'other'
+  description       String
+  eventDate         DateTime?
+  recurring         String?   // 'weekly' | 'monthly' | 'yearly'
+  recurringDetails  Json?     // e.g., {day_of_week: 'Sunday'}
+  emotionalTone     String?   // 'positive' | 'negative' | 'anxious' | 'neutral'
+  shouldAskAbout    Boolean   @default(true)
+  askedAbout        Boolean   @default(false)
+  status            String    @default("upcoming") // 'upcoming' | 'passed' | 'cancelled'
+  outcomeNotes      String?
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  resident          Resident  @relation(fields: [residentId], references: [id], onDelete: Cascade)
+  sourceCall        Call?     @relation(fields: [sourceCallId], references: [id])
+
+  @@index([residentId, status])
+  @@index([eventDate])
+}
+
+model Callback {
+  id            String    @id @default(uuid())
+  residentId    String
+  sourceCallId  String?
+  callbackType  String    // 'joke' | 'phrase' | 'story' | 'preference' | 'tease'
+  content       String    // The joke/phrase/reference itself
+  context       String?   // How it came up
+  usageNotes    String?   // When/how Linda might use this
+  timesUsed     Int       @default(0)
+  lastUsed      DateTime?
+  stillLands    Boolean   @default(true) // Does this still get a reaction?
+  createdAt     DateTime  @default(now())
+  resident      Resident  @relation(fields: [residentId], references: [id], onDelete: Cascade)
+  sourceCall    Call?     @relation(fields: [sourceCallId], references: [id])
+
+  @@index([residentId, stillLands])
 }
 
 enum UserRole {
