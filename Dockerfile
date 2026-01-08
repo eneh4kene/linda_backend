@@ -23,6 +23,6 @@ RUN npm run build
 # Expose application port (make sure it matches your app PORT)
 EXPOSE 3000
 
-# Run migrations and start the server
-CMD ["sh", "-c", "npx prisma migrate deploy && npm start"]
+# Push schema to database and start the server
+CMD ["sh", "-c", "npx prisma db push --accept-data-loss && npm start"]
 
