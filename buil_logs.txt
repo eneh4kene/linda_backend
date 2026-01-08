@@ -1,316 +1,155 @@
-2026-01-07T13:20:41.330001038Z [inf]  
-2026-01-07T13:20:41.943006659Z [inf]  [35m[Region: us-west1][0m
-2026-01-07T13:20:41.957301814Z [inf]  [35m=========================
-2026-01-07T13:20:41.957334583Z [inf]  Using Detected Dockerfile
-2026-01-07T13:20:41.957340264Z [inf]  =========================
-2026-01-07T13:20:41.957344469Z [inf]  [0m
-2026-01-07T13:20:41.957358172Z [inf]  context: 592n-Nskc
-2026-01-07T13:20:42.172623526Z [inf]  [internal] load build definition from Dockerfile
-2026-01-07T13:20:42.172693992Z [inf]  [internal] load build definition from Dockerfile
-2026-01-07T13:20:42.172717922Z [inf]  [internal] load build definition from Dockerfile
-2026-01-07T13:20:42.172732840Z [inf]  [internal] load build definition from Dockerfile
-2026-01-07T13:20:42.185766799Z [inf]  [internal] load build definition from Dockerfile
-2026-01-07T13:20:42.188843016Z [inf]  [internal] load metadata for docker.io/library/node:20-alpine
-2026-01-07T13:20:42.264121849Z [inf]  [auth] library/node:pull token for registry-1.docker.io
-2026-01-07T13:20:42.264187383Z [inf]  [auth] library/node:pull token for registry-1.docker.io
-2026-01-07T13:20:42.639959973Z [inf]  [internal] load metadata for docker.io/library/node:20-alpine
-2026-01-07T13:20:42.640663257Z [inf]  [internal] load .dockerignore
-2026-01-07T13:20:42.640718871Z [inf]  [internal] load .dockerignore
-2026-01-07T13:20:42.640803638Z [inf]  [internal] load .dockerignore
-2026-01-07T13:20:42.651853941Z [inf]  [internal] load .dockerignore
-2026-01-07T13:20:42.656884755Z [inf]  [2/7] RUN apk add --no-cache ffmpeg
-2026-01-07T13:20:42.656928309Z [inf]  [1/7] FROM docker.io/library/node:20-alpine@sha256:658d0f63e501824d6c23e06d4bb95c71e7d704537c9d9272f488ac03a370d448
-2026-01-07T13:20:42.656967272Z [inf]  [7/7] RUN npm run build
-2026-01-07T13:20:42.656983926Z [inf]  [6/7] COPY . .
-2026-01-07T13:20:42.656993427Z [inf]  [5/7] RUN npm ci
-2026-01-07T13:20:42.657048648Z [inf]  [4/7] COPY package*.json ./
-2026-01-07T13:20:42.657059973Z [inf]  [internal] load build context
-2026-01-07T13:20:42.657068919Z [inf]  [3/7] WORKDIR /app
-2026-01-07T13:20:42.657193536Z [inf]  [1/7] FROM docker.io/library/node:20-alpine@sha256:658d0f63e501824d6c23e06d4bb95c71e7d704537c9d9272f488ac03a370d448
-2026-01-07T13:20:42.657214126Z [inf]  [internal] load build context
-2026-01-07T13:20:42.663885312Z [inf]  [1/7] FROM docker.io/library/node:20-alpine@sha256:658d0f63e501824d6c23e06d4bb95c71e7d704537c9d9272f488ac03a370d448
-2026-01-07T13:20:42.664421426Z [inf]  [1/7] FROM docker.io/library/node:20-alpine@sha256:658d0f63e501824d6c23e06d4bb95c71e7d704537c9d9272f488ac03a370d448
-2026-01-07T13:20:42.664468236Z [inf]  [internal] load build context
-2026-01-07T13:20:42.664479976Z [inf]  [2/7] RUN apk add --no-cache ffmpeg
-2026-01-07T13:20:42.720443889Z [inf]  [internal] load build context
-2026-01-07T13:20:43.273063868Z [inf]  (  1/102) Installing libSvtAv1Enc (3.1.2-r0)
-
-2026-01-07T13:20:43.345947905Z [inf]  (  2/102) Installing aom-libs (3.13.1-r0)
-
-2026-01-07T13:20:43.429627936Z [inf]  (  3/102) Installing libxau (1.0.12-r0)
-
-2026-01-07T13:20:43.438516945Z [inf]  (  4/102) Installing libmd (1.1.0-r0)
-
-2026-01-07T13:20:43.447680684Z [inf]  (  5/102) Installing libbsd (0.12.2-r0)
-
-2026-01-07T13:20:43.457192224Z [inf]  (  6/102) Installing libxdmcp (1.1.5-r1)
-
-2026-01-07T13:20:43.466125908Z [inf]  (  7/102) Installing libxcb (1.17.0-r1)
-
-2026-01-07T13:20:43.484693178Z [inf]  (  8/102) Installing libx11 (1.8.12-r1)
-
-2026-01-07T13:20:43.521521543Z [inf]  (  9/102) Installing hwdata-pci (0.401-r0)
-
-2026-01-07T13:20:43.54144548Z [inf]  ( 10/102) Installing libpciaccess (0.18.1-r1)
-
-2026-01-07T13:20:43.551029143Z [inf]  ( 11/102) Installing libdrm (2.4.131-r0)
-
-2026-01-07T13:20:43.568352266Z [inf]  ( 12/102) Installing libxext (1.3.6-r2)
-
-2026-01-07T13:20:43.578081247Z [inf]  ( 13/102) Installing libxfixes (6.0.2-r0)
-
-2026-01-07T13:20:43.587194344Z [inf]  ( 14/102) Installing libffi (3.5.2-r0)
-
-2026-01-07T13:20:43.596467601Z [inf]  ( 15/102) Installing wayland-libs-client (1.24.0-r0)
-
-2026-01-07T13:20:43.605832722Z [inf]  ( 16/102) Installing libva (2.22.0-r1)
-
-2026-01-07T13:20:43.618087088Z [inf]  ( 17/102) Installing libvdpau (1.5-r4)
-
-2026-01-07T13:20:43.628801015Z [inf]  ( 18/102) Installing libvpl (2.15.0-r1)
-
-2026-01-07T13:20:43.643799281Z [inf]  ( 19/102) Installing ffmpeg-libavutil (8.0.1-r0)
-
-2026-01-07T13:20:43.663078254Z [inf]  ( 20/102) Installing libdav1d (1.5.2-r0)
-
-2026-01-07T13:20:43.68602209Z [inf]  ( 21/102) Installing brotli-libs (1.2.0-r0)
-
-2026-01-07T13:20:43.704116329Z [inf]  ( 22/102) Installing libhwy (1.3.0-r0)
-
-2026-01-07T13:20:43.714892358Z [inf]  ( 23/102) Installing lcms2 (2.17-r0)
-
-2026-01-07T13:20:43.728467919Z [inf]  ( 24/102) Installing libjxl (0.11.1-r3)
-
-2026-01-07T13:20:43.774898225Z [inf]  ( 25/102) Installing lame-libs (3.100-r5)
-
-2026-01-07T13:20:43.785805906Z [inf]  ( 26/102) Installing opus (1.5.2-r1)
-
-2026-01-07T13:20:43.799788043Z [inf]  ( 27/102) Installing rav1e-libs (0.8.1-r0)
-
-2026-01-07T13:20:43.828603087Z [inf]  ( 28/102) Installing spirv-tools (1.4.321.0-r1)
-
-2026-01-07T13:20:43.872594051Z [inf]  ( 29/102) Installing glslang-libs (1.4.321.0-r0)
-
-2026-01-07T13:20:43.897842813Z [inf]  ( 30/102) Installing shaderc (2025.3-r0)
-
-2026-01-07T13:20:43.909759433Z [inf]  ( 31/102) Installing libgomp (15.2.0-r2)
-
-2026-01-07T13:20:43.922283041Z [inf]  ( 32/102) Installing soxr (0.1.3-r7)
-
-2026-01-07T13:20:43.932610368Z [inf]  ( 33/102) Installing ffmpeg-libswresample (8.0.1-r0)
-
-2026-01-07T13:20:43.943935154Z [inf]  ( 34/102) Installing libogg (1.3.6-r0)
-
-2026-01-07T13:20:43.955661948Z [inf]  ( 35/102) Installing libtheora (1.2.0-r0)
-
-2026-01-07T13:20:43.974692871Z [inf]  ( 36/102) Installing libvorbis (1.3.7-r2)
-
-2026-01-07T13:20:43.989698662Z [inf]  ( 37/102) Installing libvpx (1.15.2-r0)
-
-2026-01-07T13:20:44.028339275Z [inf]  ( 38/102) Installing libsharpyuv (1.6.0-r0)
-
-2026-01-07T13:20:44.037297765Z [inf]  ( 39/102) Installing libwebp (1.6.0-r0)
-
-2026-01-07T13:20:44.05224985Z [inf]  ( 40/102) Installing libwebpmux (1.6.0-r0)
-
-2026-01-07T13:20:44.061408347Z [inf]  ( 41/102) Installing x264-libs (0.164.3108-r1)
-
-2026-01-07T13:20:44.087737005Z [inf]  ( 42/102) Installing numactl (2.0.18-r0)
-
-2026-01-07T13:20:44.098156456Z [inf]  ( 43/102) Installing x265-libs (4.1-r0)
-
-2026-01-07T13:20:44.214563937Z [inf]  ( 44/102) Installing xvidcore (1.3.7-r2)
-
-2026-01-07T13:20:44.227095341Z [inf]  ( 45/102) Installing ffmpeg-libavcodec (8.0.1-r0)
-
-2026-01-07T13:20:44.383421409Z [inf]  ( 46/102) Installing alsa-lib (1.2.14-r2)
-
-2026-01-07T13:20:44.406307585Z [inf]  ( 47/102) Installing libexpat (2.7.3-r0)
-
-2026-01-07T13:20:44.416099927Z [inf]  ( 48/102) Installing libbz2 (1.0.8-r6)
-
-2026-01-07T13:20:44.425460142Z [inf]  ( 49/102) Installing libpng (1.6.53-r0)
-
-2026-01-07T13:20:44.436048227Z [inf]  ( 50/102) Installing freetype (2.14.1-r0)
-
-2026-01-07T13:20:44.453734387Z [inf]  ( 51/102) Installing fontconfig (2.17.1-r0)
-
-2026-01-07T13:20:44.471085636Z [inf]  ( 52/102) Installing fribidi (1.0.16-r2)
-
-2026-01-07T13:20:44.480615651Z [inf]  ( 53/102) Installing libintl (0.24.1-r1)
-
-2026-01-07T13:20:44.491768351Z [inf]  ( 54/102) Installing libeconf (0.8.0-r0)
-
-2026-01-07T13:20:44.501138736Z [inf]  ( 55/102) Installing libblkid (2.41.2-r0)
-
-2026-01-07T13:20:44.512492368Z [inf]  ( 56/102) Installing libmount (2.41.2-r0)
-
-2026-01-07T13:20:44.524154971Z [inf]  ( 57/102) Installing pcre2 (10.47-r0)
-
-2026-01-07T13:20:44.539695619Z [inf]  ( 58/102) Installing glib (2.86.3-r0)
-
-2026-01-07T13:20:44.589318043Z [inf]  ( 59/102) Installing graphite2 (1.3.14-r6)
-
-2026-01-07T13:20:44.59925478Z [inf]  ( 60/102) Installing harfbuzz (12.2.0-r0)
-
-2026-01-07T13:20:44.620730923Z [inf]  ( 61/102) Installing libunibreak (6.1-r0)
-
-2026-01-07T13:20:44.630893042Z [inf]  ( 62/102) Installing libass (0.17.4-r0)
-
-2026-01-07T13:20:44.643236842Z [inf]  ( 63/102) Installing libudfread (1.2.0-r0)
-
-2026-01-07T13:20:44.653687311Z [inf]  ( 64/102) Installing libbluray (1.4.0-r0)
-
-2026-01-07T13:20:44.665567025Z [inf]  ( 65/102) Installing mpg123-libs (1.33.3-r0)
-
-2026-01-07T13:20:44.67824114Z [inf]  ( 66/102) Installing libopenmpt (0.8.3-r0)
-
-2026-01-07T13:20:44.698948777Z [inf]  ( 67/102) Installing cjson (1.7.19-r1)
-
-2026-01-07T13:20:44.709129393Z [inf]  ( 68/102) Installing mbedtls (3.6.5-r0)
-
-2026-01-07T13:20:44.725554874Z [inf]  ( 69/102) Installing librist (0.2.10-r1)
-
-2026-01-07T13:20:44.739925707Z [inf]  ( 70/102) Installing libsrt (1.5.3-r1)
-
-2026-01-07T13:20:44.756520637Z [inf]  ( 71/102) Installing libssh (0.11.3-r0)
-
-2026-01-07T13:20:44.769120275Z [inf]  ( 72/102) Installing xz-libs (5.8.1-r0)
-
-2026-01-07T13:20:44.779981333Z [inf]  ( 73/102) Installing libxml2 (2.13.9-r0)
-
-2026-01-07T13:20:44.798521366Z [inf]  ( 74/102) Installing libsodium (1.0.20-r1)
-
-2026-01-07T13:20:44.810781689Z [inf]  ( 75/102) Installing libzmq (4.3.5-r2)
-
-2026-01-07T13:20:44.824883904Z [inf]  ( 76/102) Installing ffmpeg-libavformat (8.0.1-r0)
-
-2026-01-07T13:20:44.859238093Z [inf]  ( 77/102) Installing serd-libs (0.32.4-r0)
-
-2026-01-07T13:20:44.869861835Z [inf]  ( 78/102) Installing zix-libs (0.6.2-r0)
-
-2026-01-07T13:20:44.879619835Z [inf]  ( 79/102) Installing sord-libs (0.16.18-r0)
-
-2026-01-07T13:20:44.889848553Z [inf]  ( 80/102) Installing sratom (0.6.18-r0)
-
-2026-01-07T13:20:44.899451514Z [inf]  ( 81/102) Installing lilv-libs (0.24.26-r0)
-
-2026-01-07T13:20:44.910071303Z [inf]  ( 82/102) Installing libdovi (3.3.2-r0)
-
-2026-01-07T13:20:44.923768185Z [inf]  ( 83/102) Installing vulkan-loader (1.4.321.0-r0)
-
-2026-01-07T13:20:44.937100348Z [inf]  ( 84/102) Installing libplacebo (7.351.0-r0)
-
-2026-01-07T13:20:44.955199548Z [inf]  ( 85/102) Installing ffmpeg-libswscale (8.0.1-r0)
-
-2026-01-07T13:20:44.981436168Z [inf]  ( 86/102) Installing vidstab (1.1.1-r0)
-
-2026-01-07T13:20:44.994213467Z [inf]  ( 87/102) Installing zimg (3.0.6-r0)
-
-2026-01-07T13:20:45.008089318Z [inf]  ( 88/102) Installing ffmpeg-libavfilter (8.0.1-r0)
-
-2026-01-07T13:20:45.063903524Z [inf]  ( 89/102) Installing libasyncns (0.8-r4)
-
-2026-01-07T13:20:45.073138876Z [inf]  ( 90/102) Installing dbus-libs (1.16.2-r1)
-
-2026-01-07T13:20:45.085280519Z [inf]  ( 91/102) Installing libltdl (2.5.4-r2)
-
-2026-01-07T13:20:45.094881681Z [inf]  ( 92/102) Installing orc (0.4.41-r0)
-
-2026-01-07T13:20:45.109298426Z [inf]  ( 93/102) Installing libflac (1.4.3-r2)
-
-2026-01-07T13:20:45.122701202Z [inf]  ( 94/102) Installing libsndfile (1.2.2-r2)
-
-2026-01-07T13:20:45.137349476Z [inf]  ( 95/102) Installing speexdsp (1.2.1-r2)
-
-2026-01-07T13:20:45.147283171Z [inf]  ( 96/102) Installing tdb-libs (1.4.14-r0)
-
-2026-01-07T13:20:45.157121058Z [inf]  ( 97/102) Installing libpulse (17.0-r5)
-
-2026-01-07T13:20:45.177412815Z [inf]  ( 98/102) Installing libjpeg-turbo (3.1.2-r0)
-
-2026-01-07T13:20:45.191064914Z [inf]  ( 99/102) Installing json-c (0.18-r1)
-
-2026-01-07T13:20:45.200917459Z [inf]  (100/102) Installing v4l-utils-libs (1.32.0-r0)
-
-2026-01-07T13:20:45.215000487Z [inf]  (101/102) Installing ffmpeg-libavdevice (8.0.1-r0)
-
-2026-01-07T13:20:45.225399706Z [inf]  (102/102) Installing ffmpeg (8.0.1-r0)
-
-2026-01-07T13:20:45.241616396Z [inf]  Executing busybox-1.37.0-r30.trigger
-
-2026-01-07T13:20:45.247936223Z [inf]  Executing glib-2.86.3-r0.trigger
-
-2026-01-07T13:20:45.254449807Z [inf]  OK: 135.5 MiB in 120 packages
-
-2026-01-07T13:20:45.321348261Z [inf]  [2/7] RUN apk add --no-cache ffmpeg
-2026-01-07T13:20:45.329126449Z [inf]  [3/7] WORKDIR /app
-2026-01-07T13:20:45.388117193Z [inf]  [3/7] WORKDIR /app
-2026-01-07T13:20:45.389671328Z [inf]  [4/7] COPY package*.json ./
-2026-01-07T13:20:45.410966212Z [inf]  [4/7] COPY package*.json ./
-2026-01-07T13:20:45.412633339Z [inf]  [5/7] RUN npm ci
-2026-01-07T13:20:49.550327463Z [inf]  npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
-
-2026-01-07T13:20:50.358554523Z [inf]  npm warn deprecated node-domexception@1.0.0: Use your platform's native DOMException instead
-
-2026-01-07T13:20:50.591422186Z [inf]  npm warn deprecated @types/socket.io@3.0.2: This is a stub types definition. socket.io provides its own type definitions, so you do not need this installed.
-
-2026-01-07T13:20:50.743816996Z [inf]  npm warn deprecated @types/bcryptjs@3.0.0: This is a stub types definition. bcryptjs provides its own type definitions, so you do not need this installed.
-
-2026-01-07T13:20:51.165750141Z [inf]  npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
-
-2026-01-07T13:20:55.773452417Z [inf]  
-added 542 packages, and audited 543 packages in 10s
-
-2026-01-07T13:20:55.773476096Z [inf]  
-
-2026-01-07T13:20:55.773529145Z [inf]  75 packages are looking for funding
-  run `npm fund` for details
-
-2026-01-07T13:20:55.776629485Z [inf]  
-1 high severity vulnerability
-
-To address all issues, run:
-  npm audit fix
-
-Run `npm audit` for details.
-
-2026-01-07T13:20:55.778117144Z [inf]  npm notice
-npm notice New major version of npm available! 10.8.2 -> 11.7.0
-npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.7.0
-npm notice To update run: npm install -g npm@11.7.0
-npm notice
-
-2026-01-07T13:20:56.222430466Z [inf]  [5/7] RUN npm ci
-2026-01-07T13:20:56.228679816Z [inf]  [6/7] COPY . .
-2026-01-07T13:20:56.393880491Z [inf]  [6/7] COPY . .
-2026-01-07T13:20:56.395750952Z [inf]  [7/7] RUN npm run build
-2026-01-07T13:20:56.635535063Z [inf]  
-> linda-backend@1.0.0 build
-> tsc
-
-
-2026-01-07T13:21:01.249782138Z [inf]  src/routes/lifebook.ts(118,42): error TS2339: Property 'map' does not exist on type 'unknown'.
-
-2026-01-07T13:21:01.250032381Z [inf]  src/services/bookReadiness.ts(138,5): error TS2322: Type '{ chapter: unknown; segmentCount: any; avgQuality: number; }[]' is not assignable to type '{ chapter: string; segmentCount: number; avgQuality: number; }[]'.
-  Type '{ chapter: unknown; segmentCount: any; avgQuality: number; }' is not assignable to type '{ chapter: string; segmentCount: number; avgQuality: number; }'.
-    Types of property 'chapter' are incompatible.
-      Type 'unknown' is not assignable to type 'string'.
-
-2026-01-07T13:21:01.250059752Z [inf]  src/services/copyEditor.ts(209,33): error TS2339: Property 'transcriptText' does not exist on type 'unknown'.
-src/services/copyEditor.ts(210,29): error TS2339: Property 'pullQuotes' does not exist on type 'unknown'.
-
-2026-01-07T13:21:01.250152337Z [inf]  src/services/copyEditor.ts(211,32): error TS2339: Property 'emotionalTone' does not exist on type 'unknown'.
-src/services/copyEditor.ts(212,31): error TS2339: Property 'call' does not exist on type 'unknown'.
-src/services/copyEditor.ts(213,30): error TS2339: Property 'call' does not exist on type 'unknown'.
-
-2026-01-07T13:21:01.330718883Z [err]  [7/7] RUN npm run build
-2026-01-07T13:21:01.348350808Z [err]  Dockerfile:18
-2026-01-07T13:21:01.348401920Z [err]  -------------------
-2026-01-07T13:21:01.348411216Z [err]  16 |
-2026-01-07T13:21:01.348419830Z [err]  17 |     # Build Typescript files
-2026-01-07T13:21:01.348429595Z [err]  18 | >>> RUN npm run build
-2026-01-07T13:21:01.348436237Z [err]  19 |
-2026-01-07T13:21:01.348445209Z [err]  20 |     # Expose application port (make sure it matches your app PORT)
-2026-01-07T13:21:01.348452586Z [err]  -------------------
-2026-01-07T13:21:01.348460867Z [err]  ERROR: failed to build: failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 2
+2026-01-08T16:06:52.000000000Z [inf]  Starting Container
+2026-01-08T16:06:53.899292568Z [inf]  
+2026-01-08T16:06:53.899317525Z [inf]  > linda-backend@1.0.0 start
+2026-01-08T16:06:53.899324665Z [inf]  > node dist/index.js
+2026-01-08T16:06:53.899331024Z [inf]  
+2026-01-08T16:06:53.899338099Z [inf]  [dotenv@17.2.3] injecting env (0) from .env -- tip: 🔑 add access controls to secrets: https://dotenvx.com/ops
+2026-01-08T16:06:53.899345525Z [err]  ❌ Environment validation failed:
+2026-01-08T16:06:53.899351527Z [err]  Missing or invalid variables: DATABASE_URL, REDIS_URL, RETELL_API_KEY, RETELL_AGENT_ID, RETELL_WEBHOOK_SECRET, ANTHROPIC_API_KEY, BLOB_READ_WRITE_TOKEN, API_BASE_URL, JWT_SECRET
+2026-01-08T16:06:54.915318736Z [inf]  
+2026-01-08T16:06:54.915332441Z [inf]  [dotenv@17.2.3] injecting env (0) from .env -- tip: 📡 add observability to secrets: https://dotenvx.com/ops
+2026-01-08T16:06:54.915339862Z [err]  ❌ Environment validation failed:
+2026-01-08T16:06:54.915346881Z [err]  Missing or invalid variables: DATABASE_URL, REDIS_URL, RETELL_API_KEY, RETELL_AGENT_ID, RETELL_WEBHOOK_SECRET, ANTHROPIC_API_KEY, BLOB_READ_WRITE_TOKEN, API_BASE_URL, JWT_SECRET
+2026-01-08T16:06:54.915475030Z [inf]  
+2026-01-08T16:06:54.915482556Z [inf]  > linda-backend@1.0.0 start
+2026-01-08T16:06:54.915487903Z [inf]  > node dist/index.js
+2026-01-08T16:06:56.170778825Z [inf]  
+2026-01-08T16:06:56.170788057Z [inf]  > linda-backend@1.0.0 start
+2026-01-08T16:06:56.170795216Z [inf]  > node dist/index.js
+2026-01-08T16:06:56.170801953Z [inf]  
+2026-01-08T16:06:56.321487412Z [inf]  [dotenv@17.2.3] injecting env (0) from .env -- tip: ⚙️  override existing env vars with { override: true }
+2026-01-08T16:06:56.321495441Z [err]  ❌ Environment validation failed:
+2026-01-08T16:06:56.321502564Z [err]  Missing or invalid variables: DATABASE_URL, REDIS_URL, RETELL_API_KEY, RETELL_AGENT_ID, RETELL_WEBHOOK_SECRET, ANTHROPIC_API_KEY, BLOB_READ_WRITE_TOKEN, API_BASE_URL, JWT_SECRET
+2026-01-08T16:06:57.984574097Z [inf]  
+2026-01-08T16:06:57.984585884Z [inf]  [dotenv@17.2.3] injecting env (0) from .env -- tip: 🔐 encrypt with Dotenvx: https://dotenvx.com
+2026-01-08T16:06:57.984593177Z [err]  ❌ Environment validation failed:
+2026-01-08T16:06:57.984601880Z [err]  Missing or invalid variables: DATABASE_URL, REDIS_URL, RETELL_API_KEY, RETELL_AGENT_ID, RETELL_WEBHOOK_SECRET, ANTHROPIC_API_KEY, BLOB_READ_WRITE_TOKEN, API_BASE_URL, JWT_SECRET
+2026-01-08T16:06:57.984613298Z [inf]  
+2026-01-08T16:06:57.984617961Z [inf]  > linda-backend@1.0.0 start
+2026-01-08T16:06:57.984622319Z [inf]  > node dist/index.js
+2026-01-08T16:06:59.450714419Z [inf]  
+2026-01-08T16:06:59.450724263Z [inf]  > linda-backend@1.0.0 start
+2026-01-08T16:06:59.450730129Z [inf]  > node dist/index.js
+2026-01-08T16:06:59.450738869Z [inf]  
+2026-01-08T16:07:00.138961751Z [inf]  [dotenv@17.2.3] injecting env (0) from .env -- tip: ⚙️  enable debug logging with { debug: true }
+2026-01-08T16:07:00.138967794Z [err]  ❌ Environment validation failed:
+2026-01-08T16:07:00.138972521Z [err]  Missing or invalid variables: DATABASE_URL, REDIS_URL, RETELL_API_KEY, RETELL_AGENT_ID, RETELL_WEBHOOK_SECRET, ANTHROPIC_API_KEY, BLOB_READ_WRITE_TOKEN, API_BASE_URL, JWT_SECRET
+2026-01-08T16:07:01.179418107Z [inf]  > node dist/index.js
+2026-01-08T16:07:01.179428690Z [inf]  
+2026-01-08T16:07:01.179461167Z [inf]  
+2026-01-08T16:07:01.179467806Z [inf]  > linda-backend@1.0.0 start
+2026-01-08T16:07:01.290301819Z [inf]  [dotenv@17.2.3] injecting env (0) from .env -- tip: 🔐 prevent committing .env to code: https://dotenvx.com/precommit
+2026-01-08T16:07:01.299100842Z [err]  ❌ Environment validation failed:
+2026-01-08T16:07:01.299113727Z [err]  Missing or invalid variables: DATABASE_URL, REDIS_URL, RETELL_API_KEY, RETELL_AGENT_ID, RETELL_WEBHOOK_SECRET, ANTHROPIC_API_KEY, BLOB_READ_WRITE_TOKEN, API_BASE_URL, JWT_SECRET
+2026-01-08T16:07:03.245787285Z [err]  Missing or invalid variables: DATABASE_URL, REDIS_URL, RETELL_API_KEY, RETELL_AGENT_ID, RETELL_WEBHOOK_SECRET, ANTHROPIC_API_KEY, BLOB_READ_WRITE_TOKEN, API_BASE_URL, JWT_SECRET
+2026-01-08T16:07:03.245838901Z [inf]  > linda-backend@1.0.0 start
+2026-01-08T16:07:03.245847770Z [inf]  > node dist/index.js
+2026-01-08T16:07:03.245850885Z [inf]  
+2026-01-08T16:07:03.245855119Z [inf]  
+2026-01-08T16:07:03.245861509Z [inf]  [dotenv@17.2.3] injecting env (0) from .env -- tip: 🔐 prevent committing .env to code: https://dotenvx.com/precommit
+2026-01-08T16:07:03.245866261Z [err]  ❌ Environment validation failed:
+2026-01-08T16:07:05.159225755Z [inf]  
+2026-01-08T16:07:05.159236740Z [inf]  [dotenv@17.2.3] injecting env (0) from .env -- tip: ⚙️  specify custom .env file path with { path: '/custom/path/.env' }
+2026-01-08T16:07:05.159243773Z [err]  ❌ Environment validation failed:
+2026-01-08T16:07:05.159250832Z [err]  Missing or invalid variables: DATABASE_URL, REDIS_URL, RETELL_API_KEY, RETELL_AGENT_ID, RETELL_WEBHOOK_SECRET, ANTHROPIC_API_KEY, BLOB_READ_WRITE_TOKEN, API_BASE_URL, JWT_SECRET
+2026-01-08T16:07:05.159426874Z [inf]  
+2026-01-08T16:07:05.159434222Z [inf]  > linda-backend@1.0.0 start
+2026-01-08T16:07:05.159446977Z [inf]  > node dist/index.js
+2026-01-08T16:07:06.205366912Z [inf]  
+2026-01-08T16:07:06.205375527Z [inf]  > linda-backend@1.0.0 start
+2026-01-08T16:07:06.205381581Z [inf]  > node dist/index.js
+2026-01-08T16:07:06.205388334Z [inf]  
+2026-01-08T16:07:06.368581790Z [inf]  [dotenv@17.2.3] injecting env (0) from .env -- tip: 🔑 add access controls to secrets: https://dotenvx.com/ops
+2026-01-08T16:07:06.368591233Z [err]  ❌ Environment validation failed:
+2026-01-08T16:07:06.368597349Z [err]  Missing or invalid variables: DATABASE_URL, REDIS_URL, RETELL_API_KEY, RETELL_AGENT_ID, RETELL_WEBHOOK_SECRET, ANTHROPIC_API_KEY, BLOB_READ_WRITE_TOKEN, API_BASE_URL, JWT_SECRET
+2026-01-08T16:07:08.118902820Z [inf]  
+2026-01-08T16:07:08.118931977Z [inf]  
+2026-01-08T16:07:08.118938927Z [inf]  > linda-backend@1.0.0 start
+2026-01-08T16:07:08.118945858Z [inf]  > node dist/index.js
+2026-01-08T16:07:08.239340623Z [inf]  [dotenv@17.2.3] injecting env (0) from .env -- tip: 🔐 prevent building .env in docker: https://dotenvx.com/prebuild
+2026-01-08T16:07:08.239346258Z [err]  ❌ Environment validation failed:
+2026-01-08T16:07:08.239352354Z [err]  Missing or invalid variables: DATABASE_URL, REDIS_URL, RETELL_API_KEY, RETELL_AGENT_ID, RETELL_WEBHOOK_SECRET, ANTHROPIC_API_KEY, BLOB_READ_WRITE_TOKEN, API_BASE_URL, JWT_SECRET
+2026-01-08T16:07:10.186434131Z [inf]  
+2026-01-08T16:07:10.186439106Z [inf]  > linda-backend@1.0.0 start
+2026-01-08T16:07:10.186444231Z [inf]  > node dist/index.js
+2026-01-08T16:07:10.186449732Z [inf]  
+2026-01-08T16:07:10.186455896Z [inf]  [dotenv@17.2.3] injecting env (0) from .env -- tip: 🗂️ backup and recover secrets: https://dotenvx.com/ops
+2026-01-08T16:07:10.186461769Z [err]  ❌ Environment validation failed:
+2026-01-08T16:07:10.186467991Z [err]  Missing or invalid variables: DATABASE_URL, REDIS_URL, RETELL_API_KEY, RETELL_AGENT_ID, RETELL_WEBHOOK_SECRET, ANTHROPIC_API_KEY, BLOB_READ_WRITE_TOKEN, API_BASE_URL, JWT_SECRET
+2026-01-08T16:14:14.024433074Z [inf]  [dotenv@17.2.3] injecting env (0) from .env -- tip: ⚙️  suppress all logs with { quiet: true }
+2026-01-08T16:14:14.024444286Z [err]  ❌ Environment validation failed:
+2026-01-08T16:14:14.024450876Z [err]  Missing or invalid variables: DATABASE_URL, REDIS_URL, RETELL_API_KEY, RETELL_AGENT_ID, RETELL_WEBHOOK_SECRET, ANTHROPIC_API_KEY, BLOB_READ_WRITE_TOKEN, API_BASE_URL, JWT_SECRET
+2026-01-08T16:14:14.024458112Z [inf]  
+2026-01-08T16:14:14.024473166Z [inf]  > linda-backend@1.0.0 start
+2026-01-08T16:14:14.024475005Z [inf]  
+2026-01-08T16:14:14.024480038Z [inf]  > node dist/index.js
+2026-01-08T16:14:14.024487003Z [inf]  
+2026-01-08T16:14:14.024519155Z [inf]  [dotenv@17.2.3] injecting env (0) from .env -- tip: 🔑 add access controls to secrets: https://dotenvx.com/ops
+2026-01-08T16:14:14.024526011Z [err]  ❌ Environment validation failed:
+2026-01-08T16:14:14.024533036Z [err]  Missing or invalid variables: DATABASE_URL, REDIS_URL, RETELL_API_KEY, RETELL_AGENT_ID, RETELL_WEBHOOK_SECRET, ANTHROPIC_API_KEY, BLOB_READ_WRITE_TOKEN, API_BASE_URL, JWT_SECRET
+2026-01-08T16:14:14.024539411Z [inf]  
+2026-01-08T16:14:14.024549005Z [inf]  > linda-backend@1.0.0 start
+2026-01-08T16:14:14.024555434Z [inf]  > node dist/index.js
+2026-01-08T16:14:14.024563524Z [inf]  
+2026-01-08T16:14:14.024570366Z [inf]  [dotenv@17.2.3] injecting env (0) from .env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+2026-01-08T16:14:14.024578536Z [err]  ❌ Environment validation failed:
+2026-01-08T16:14:14.024578762Z [err]  Missing or invalid variables: DATABASE_URL, REDIS_URL, RETELL_API_KEY, RETELL_AGENT_ID, RETELL_WEBHOOK_SECRET, ANTHROPIC_API_KEY, BLOB_READ_WRITE_TOKEN, API_BASE_URL, JWT_SECRET
+2026-01-08T16:14:14.024585912Z [inf]  
+2026-01-08T16:14:14.024590717Z [inf]  > linda-backend@1.0.0 start
+2026-01-08T16:14:14.024595309Z [inf]  > node dist/index.js
+2026-01-08T16:14:14.024599477Z [inf]  
+2026-01-08T16:14:14.027053538Z [inf]  > linda-backend@1.0.0 start
+2026-01-08T16:14:14.027060277Z [inf]  > node dist/index.js
+2026-01-08T16:14:14.027066027Z [inf]  
+2026-01-08T16:14:14.027071721Z [inf]  [dotenv@17.2.3] injecting env (0) from .env -- tip: 🗂️ backup and recover secrets: https://dotenvx.com/ops
+2026-01-08T16:14:14.027077557Z [err]  ❌ Environment validation failed:
+2026-01-08T16:14:14.027082539Z [err]  Missing or invalid variables: DATABASE_URL, REDIS_URL, RETELL_API_KEY, RETELL_AGENT_ID, RETELL_WEBHOOK_SECRET, ANTHROPIC_API_KEY, BLOB_READ_WRITE_TOKEN, API_BASE_URL, JWT_SECRET
+2026-01-08T16:14:14.027088272Z [inf]  
+2026-01-08T16:14:14.027097524Z [inf]  > linda-backend@1.0.0 start
+2026-01-08T16:14:14.027103012Z [inf]  > node dist/index.js
+2026-01-08T16:14:14.027108318Z [inf]  
+2026-01-08T16:14:14.027114953Z [inf]  [dotenv@17.2.3] injecting env (0) from .env -- tip: 🔐 prevent building .env in docker: https://dotenvx.com/prebuild
+2026-01-08T16:14:14.027119973Z [err]  ❌ Environment validation failed:
+2026-01-08T16:14:14.027125093Z [err]  Missing or invalid variables: DATABASE_URL, REDIS_URL, RETELL_API_KEY, RETELL_AGENT_ID, RETELL_WEBHOOK_SECRET, ANTHROPIC_API_KEY, BLOB_READ_WRITE_TOKEN, API_BASE_URL, JWT_SECRET
+2026-01-08T16:14:14.027130608Z [inf]  
+2026-01-08T16:14:14.027136498Z [inf]  > linda-backend@1.0.0 start
+2026-01-08T16:14:14.027141397Z [inf]  > node dist/index.js
+2026-01-08T16:14:14.027146477Z [inf]  
+2026-01-08T16:14:14.163315679Z [inf]  [dotenv@17.2.3] injecting env (0) from .env -- tip: 🗂️ backup and recover secrets: https://dotenvx.com/ops
+2026-01-08T16:14:14.171355301Z [err]  ❌ Environment validation failed:
+2026-01-08T16:14:14.171369499Z [err]  Missing or invalid variables: DATABASE_URL, REDIS_URL, RETELL_API_KEY, RETELL_AGENT_ID, RETELL_WEBHOOK_SECRET, ANTHROPIC_API_KEY, BLOB_READ_WRITE_TOKEN, API_BASE_URL, JWT_SECRET
+2026-01-08T16:14:15.458857417Z [inf]  
+2026-01-08T16:14:15.458865302Z [inf]  > linda-backend@1.0.0 start
+2026-01-08T16:14:15.458870353Z [inf]  > node dist/index.js
+2026-01-08T16:14:15.458877119Z [inf]  
+2026-01-08T16:14:16.078579036Z [err]  ❌ Environment validation failed:
+2026-01-08T16:14:16.078588917Z [err]  Missing or invalid variables: DATABASE_URL, REDIS_URL, RETELL_API_KEY, RETELL_AGENT_ID, RETELL_WEBHOOK_SECRET, ANTHROPIC_API_KEY, BLOB_READ_WRITE_TOKEN, API_BASE_URL, JWT_SECRET
+2026-01-08T16:14:16.078645096Z [inf]  [dotenv@17.2.3] injecting env (0) from .env -- tip: ⚙️  override existing env vars with { override: true }
+2026-01-08T16:14:17.137386889Z [inf]  
+2026-01-08T16:14:17.137394206Z [inf]  > linda-backend@1.0.0 start
+2026-01-08T16:14:17.137399894Z [inf]  > node dist/index.js
+2026-01-08T16:14:17.137404802Z [inf]  
+2026-01-08T16:14:17.299799944Z [inf]  [dotenv@17.2.3] injecting env (0) from .env -- tip: ⚙️  specify custom .env file path with { path: '/custom/path/.env' }
+2026-01-08T16:14:17.299806314Z [err]  ❌ Environment validation failed:
+2026-01-08T16:14:17.299812538Z [err]  Missing or invalid variables: DATABASE_URL, REDIS_URL, RETELL_API_KEY, RETELL_AGENT_ID, RETELL_WEBHOOK_SECRET, ANTHROPIC_API_KEY, BLOB_READ_WRITE_TOKEN, API_BASE_URL, JWT_SECRET
+2026-01-08T16:14:19.148852433Z [inf]  
+2026-01-08T16:14:19.148865183Z [inf]  > linda-backend@1.0.0 start
+2026-01-08T16:14:19.148872957Z [inf]  > node dist/index.js
+2026-01-08T16:14:19.148880200Z [inf]  
+2026-01-08T16:14:19.148886622Z [inf]  [dotenv@17.2.3] injecting env (0) from .env -- tip: ✅ audit secrets and track compliance: https://dotenvx.com/ops
+2026-01-08T16:14:19.148894330Z [err]  ❌ Environment validation failed:
+2026-01-08T16:14:19.148905475Z [err]  Missing or invalid variables: DATABASE_URL, REDIS_URL, RETELL_API_KEY, RETELL_AGENT_ID, RETELL_WEBHOOK_SECRET, ANTHROPIC_API_KEY, BLOB_READ_WRITE_TOKEN, API_BASE_URL, JWT_SECRET
+2026-01-08T16:14:20.429201249Z [inf]  
+2026-01-08T16:14:20.429211441Z [inf]  > linda-backend@1.0.0 start
+2026-01-08T16:14:20.429218851Z [inf]  > node dist/index.js
+2026-01-08T16:14:20.429223248Z [inf]  
+2026-01-08T16:14:20.977481708Z [inf]  [dotenv@17.2.3] injecting env (0) from .env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+2026-01-08T16:14:20.977499963Z [err]  ❌ Environment validation failed:
+2026-01-08T16:14:20.977512150Z [err]  Missing or invalid variables: DATABASE_URL, REDIS_URL, RETELL_API_KEY, RETELL_AGENT_ID, RETELL_WEBHOOK_SECRET, ANTHROPIC_API_KEY, BLOB_READ_WRITE_TOKEN, API_BASE_URL, JWT_SECRET
+2026-01-08T16:14:22.081612785Z [inf]  
+2026-01-08T16:14:22.081619678Z [inf]  > linda-backend@1.0.0 start
+2026-01-08T16:14:22.081625592Z [inf]  > node dist/index.js
+2026-01-08T16:14:22.081632042Z [inf]  
+2026-01-08T16:14:22.220220169Z [inf]  [dotenv@17.2.3] injecting env (0) from .env -- tip: ⚙️  override existing env vars with { override: true }
+2026-01-08T16:14:22.220230119Z [err]  ❌ Environment validation failed:
+2026-01-08T16:14:22.220235830Z [err]  Missing or invalid variables: DATABASE_URL, REDIS_URL, RETELL_API_KEY, RETELL_AGENT_ID, RETELL_WEBHOOK_SECRET, ANTHROPIC_API_KEY, BLOB_READ_WRITE_TOKEN, API_BASE_URL, JWT_SECRET

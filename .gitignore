@@ -17,3 +17,4 @@ prisma/migrations/dev.db*
 tmp/
 temp/
 .specstory/
+CREDENTIALS.md
