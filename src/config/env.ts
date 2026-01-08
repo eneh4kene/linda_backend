@@ -1,8 +1,10 @@
 import { config } from 'dotenv';
 import { z } from 'zod';
 
-// Load .env file
-config();
+// Load .env file if it exists (for local development)
+// In production platforms like Railway, env vars are set directly in process.env
+// Use override: false to ensure process.env (from Railway) takes precedence
+config({ override: false });
 
 const envSchema = z.object({
   // Database
@@ -46,6 +48,10 @@ function validateEnv() {
       const missingVars = error.errors.map((e) => e.path.join('.')).join(', ');
       console.error('❌ Environment validation failed:');
       console.error(`Missing or invalid variables: ${missingVars}`);
+      console.error('\n💡 Make sure all required environment variables are set in Railway:');
+      console.error('   - Go to your Railway project → Variables tab');
+      console.error('   - Add all required variables listed above');
+      console.error(`\n📋 Current NODE_ENV: ${process.env.NODE_ENV || 'not set'}`);
       process.exit(1);
     }
     throw error;

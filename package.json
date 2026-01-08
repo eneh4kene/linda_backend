@@ -12,9 +12,13 @@
     "db:push": "prisma db push",
     "db:generate": "prisma generate",
     "db:studio": "prisma studio",
+    "db:seed": "tsx prisma/seed.ts",
     "test": "jest",
     "test:e2e": "jest src/tests/e2e-dashboard.test.ts",
     "test:watch": "jest --watch"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
   },
   "keywords": [
     "ai",
