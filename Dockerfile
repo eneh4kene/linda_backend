@@ -2,7 +2,7 @@
 FROM node:20-alpine
 
 # Install system dependencies
-RUN apk add --no-cache ffmpeg
+RUN apk add --no-cache ffmpeg openssl1.1-compat
 
 # Create app directory
 WORKDIR /app
