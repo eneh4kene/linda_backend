@@ -1,8 +1,8 @@
 # Dockerfile for Linda Backend
 FROM node:20-alpine
 
-# Install system dependencies
-RUN apk add --no-cache ffmpeg openssl1.1-compat
+# Install system dependencies including OpenSSL for Prisma
+RUN apk add --no-cache ffmpeg openssl libc6-compat
 
 # Create app directory
 WORKDIR /app
