@@ -20,7 +20,7 @@ RUN npx prisma generate
 # Build Typescript files
 RUN npm run build
 
-# Expose application port (make sure it matches your app PORT)
+# Expose application port
 EXPOSE 3000
 
 # Push schema to database and start the server

@@ -110,9 +110,15 @@ app.use((err: Error, _req: express.Request, res: express.Response, _next: expres
 
 const PORT = parseInt(env.PORT, 10);
 
+console.log(`🔍 Attempting to bind to port ${PORT} on 0.0.0.0`);
+console.log(`🔍 Raw PORT env var: ${process.env.PORT}`);
+
 httpServer.listen(PORT, '0.0.0.0', () => {
   console.log(`🚀 Linda Backend running on port ${PORT}`);
   console.log(`📍 Health check: http://localhost:${PORT}/health`);
   console.log(`🌍 Environment: ${env.NODE_ENV}`);
   console.log(`🔌 WebSocket server ready`);
+}).on('error', (err) => {
+  console.error(`❌ Failed to start server:`, err);
+  process.exit(1);
 });
