@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { prisma } from '../lib/prisma';
-// import { verifyWebhookSignature } from '../services/retell';
+import { verifyWebhookSignature } from '../services/retell';
 import { queueProcessCall } from '../queues';
 import { downloadAudio, uploadAudio } from '../services/storage';
 import { RetellWebhookEvent } from '../types';
@@ -15,15 +15,14 @@ const router = Router();
 router.post('/retell', async (req, res) => {
   try {
     // Get raw body for signature verification
-    // const signature = req.headers['x-retell-signature'] as string | undefined;
-    // const rawBody = JSON.stringify(req.body);
+    const signature = req.headers['x-retell-signature'] as string | undefined;
+    const rawBody = JSON.stringify(req.body);
 
     // Verify webhook signature
-    // TEMPORARILY DISABLED FOR TESTING - Re-enable in production!
-    // if (!verifyWebhookSignature(rawBody, signature)) {
-    //   console.error('Invalid webhook signature');
-    //   return res.status(401).json({ error: 'Invalid signature' });
-    // }
+    if (!verifyWebhookSignature(rawBody, signature)) {
+      console.error('Invalid webhook signature');
+      return res.status(401).json({ error: 'Invalid signature' });
+    }
 
     const event = req.body as any; // Using any because actual webhook structure differs from types
     const eventType = event.event;

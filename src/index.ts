@@ -36,7 +36,7 @@ initializeWebSocket(httpServer);
 
 // Middleware
 app.use(cors({
-  origin: process.env.FRONTEND_URL || '*',
+  origin: process.env.FRONTEND_URL || false, // Reject all CORS if FRONTEND_URL not set
   credentials: true,
 }));
 app.use(express.json());
@@ -44,7 +44,6 @@ app.use(express.urlencoded({ extended: true }));
 
 // Serve static files (for lifebook demo)
 app.use(express.static('public'));
-app.use(express.static('.')); // Serve LifeStoryBook.jsx from root
 
 // Health check endpoint
 app.get('/health', async (_req, res) => {
