@@ -81,13 +81,13 @@ export async function calculateBookReadiness(residentId: string): Promise<BookRe
 
   // Chapter breakdown
   const chapterBreakdown = Array.from(categoriesSet).map((category) => {
-    const categorySegments = segments.filter((s) => s.category === category);
+    const categorySegments = segments.filter((s: any) => s.category === category);
     const avgQuality =
-      categorySegments.reduce((sum, s) => sum + (s.storyQualityScore ?? 0), 0) /
+      categorySegments.reduce((sum: any, s: any) => sum + (s.storyQualityScore ?? 0), 0) /
       categorySegments.length;
 
     return {
-      chapter: category || 'unknown',
+      chapter: (category || 'unknown') as string,
       segmentCount: categorySegments.length,
       avgQuality: Math.round(avgQuality * 10) / 10,
     };

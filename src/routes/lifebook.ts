@@ -115,7 +115,7 @@ router.get('/:residentId/lifebook', async (req, res) => {
         };
 
         // Format stories
-        const stories = categorySegments.map((segment, storyIndex) => {
+        const stories = (categorySegments as any).map((segment: any, storyIndex: any) => {
           const durationSeconds = Math.floor((segment.endTimeMs - segment.startTimeMs) / 1000);
           const minutes = Math.floor(durationSeconds / 60);
           const seconds = durationSeconds % 60;

@@ -1,275 +1,273 @@
-2026-01-07T13:12:07.453972503Z [inf]  
-2026-01-07T13:12:07.821976458Z [inf]  [35m[Region: us-west1][0m
-2026-01-07T13:12:07.832825619Z [inf]  [35m=========================
-2026-01-07T13:12:07.832848362Z [inf]  Using Detected Dockerfile
-2026-01-07T13:12:07.832852131Z [inf]  =========================
-2026-01-07T13:12:07.832855406Z [inf]  [0m
-2026-01-07T13:12:07.832866292Z [inf]  context: k401-LlQR
-2026-01-07T13:12:07.967459724Z [inf]  [internal] load build definition from Dockerfile
-2026-01-07T13:12:07.967514275Z [inf]  [internal] load build definition from Dockerfile
-2026-01-07T13:12:07.967530494Z [inf]  [internal] load build definition from Dockerfile
-2026-01-07T13:12:07.974277113Z [inf]  [internal] load build definition from Dockerfile
-2026-01-07T13:12:07.975710054Z [inf]  [internal] load metadata for docker.io/library/node:20-alpine
-2026-01-07T13:12:08.604954369Z [inf]  [internal] load metadata for docker.io/library/node:20-alpine
-2026-01-07T13:12:08.605210229Z [inf]  [internal] load .dockerignore
-2026-01-07T13:12:08.605285021Z [inf]  [internal] load .dockerignore
-2026-01-07T13:12:08.605424488Z [inf]  [internal] load .dockerignore
-2026-01-07T13:12:08.612395545Z [inf]  [internal] load .dockerignore
-2026-01-07T13:12:08.615028489Z [inf]  [7/7] RUN npm run build
-2026-01-07T13:12:08.615054928Z [inf]  [6/7] COPY . .
-2026-01-07T13:12:08.615070320Z [inf]  [5/7] RUN npm ci
-2026-01-07T13:12:08.615080763Z [inf]  [4/7] COPY package*.json ./
-2026-01-07T13:12:08.615090944Z [inf]  [internal] load build context
-2026-01-07T13:12:08.615099374Z [inf]  [3/7] WORKDIR /app
-2026-01-07T13:12:08.615108127Z [inf]  [2/7] RUN apk add --no-cache ffmpeg
-2026-01-07T13:12:08.615118001Z [inf]  [1/7] FROM docker.io/library/node:20-alpine@sha256:658d0f63e501824d6c23e06d4bb95c71e7d704537c9d9272f488ac03a370d448
-2026-01-07T13:12:08.615131989Z [inf]  [1/7] FROM docker.io/library/node:20-alpine@sha256:658d0f63e501824d6c23e06d4bb95c71e7d704537c9d9272f488ac03a370d448
-2026-01-07T13:12:08.615137771Z [inf]  [internal] load build context
-2026-01-07T13:12:08.619564034Z [inf]  [1/7] FROM docker.io/library/node:20-alpine@sha256:658d0f63e501824d6c23e06d4bb95c71e7d704537c9d9272f488ac03a370d448
-2026-01-07T13:12:08.619780315Z [inf]  [1/7] FROM docker.io/library/node:20-alpine@sha256:658d0f63e501824d6c23e06d4bb95c71e7d704537c9d9272f488ac03a370d448
-2026-01-07T13:12:08.619798646Z [inf]  [1/7] FROM docker.io/library/node:20-alpine@sha256:658d0f63e501824d6c23e06d4bb95c71e7d704537c9d9272f488ac03a370d448
-2026-01-07T13:12:08.620013272Z [inf]  [1/7] FROM docker.io/library/node:20-alpine@sha256:658d0f63e501824d6c23e06d4bb95c71e7d704537c9d9272f488ac03a370d448
-2026-01-07T13:12:08.620029543Z [inf]  [internal] load build context
-2026-01-07T13:12:08.638201409Z [inf]  [1/7] FROM docker.io/library/node:20-alpine@sha256:658d0f63e501824d6c23e06d4bb95c71e7d704537c9d9272f488ac03a370d448
-2026-01-07T13:12:08.639765960Z [inf]  [1/7] FROM docker.io/library/node:20-alpine@sha256:658d0f63e501824d6c23e06d4bb95c71e7d704537c9d9272f488ac03a370d448
-2026-01-07T13:12:08.650867577Z [inf]  [internal] load build context
-2026-01-07T13:12:09.079727883Z [inf]  [1/7] FROM docker.io/library/node:20-alpine@sha256:658d0f63e501824d6c23e06d4bb95c71e7d704537c9d9272f488ac03a370d448
-2026-01-07T13:12:09.937119959Z [inf]  [2/7] RUN apk add --no-cache ffmpeg
-2026-01-07T13:12:10.325447937Z [inf]  (  1/102) Installing libSvtAv1Enc (3.1.2-r0)
+2026-01-07T13:20:41.330001038Z [inf]  
+2026-01-07T13:20:41.943006659Z [inf]  [35m[Region: us-west1][0m
+2026-01-07T13:20:41.957301814Z [inf]  [35m=========================
+2026-01-07T13:20:41.957334583Z [inf]  Using Detected Dockerfile
+2026-01-07T13:20:41.957340264Z [inf]  =========================
+2026-01-07T13:20:41.957344469Z [inf]  [0m
+2026-01-07T13:20:41.957358172Z [inf]  context: 592n-Nskc
+2026-01-07T13:20:42.172623526Z [inf]  [internal] load build definition from Dockerfile
+2026-01-07T13:20:42.172693992Z [inf]  [internal] load build definition from Dockerfile
+2026-01-07T13:20:42.172717922Z [inf]  [internal] load build definition from Dockerfile
+2026-01-07T13:20:42.172732840Z [inf]  [internal] load build definition from Dockerfile
+2026-01-07T13:20:42.185766799Z [inf]  [internal] load build definition from Dockerfile
+2026-01-07T13:20:42.188843016Z [inf]  [internal] load metadata for docker.io/library/node:20-alpine
+2026-01-07T13:20:42.264121849Z [inf]  [auth] library/node:pull token for registry-1.docker.io
+2026-01-07T13:20:42.264187383Z [inf]  [auth] library/node:pull token for registry-1.docker.io
+2026-01-07T13:20:42.639959973Z [inf]  [internal] load metadata for docker.io/library/node:20-alpine
+2026-01-07T13:20:42.640663257Z [inf]  [internal] load .dockerignore
+2026-01-07T13:20:42.640718871Z [inf]  [internal] load .dockerignore
+2026-01-07T13:20:42.640803638Z [inf]  [internal] load .dockerignore
+2026-01-07T13:20:42.651853941Z [inf]  [internal] load .dockerignore
+2026-01-07T13:20:42.656884755Z [inf]  [2/7] RUN apk add --no-cache ffmpeg
+2026-01-07T13:20:42.656928309Z [inf]  [1/7] FROM docker.io/library/node:20-alpine@sha256:658d0f63e501824d6c23e06d4bb95c71e7d704537c9d9272f488ac03a370d448
+2026-01-07T13:20:42.656967272Z [inf]  [7/7] RUN npm run build
+2026-01-07T13:20:42.656983926Z [inf]  [6/7] COPY . .
+2026-01-07T13:20:42.656993427Z [inf]  [5/7] RUN npm ci
+2026-01-07T13:20:42.657048648Z [inf]  [4/7] COPY package*.json ./
+2026-01-07T13:20:42.657059973Z [inf]  [internal] load build context
+2026-01-07T13:20:42.657068919Z [inf]  [3/7] WORKDIR /app
+2026-01-07T13:20:42.657193536Z [inf]  [1/7] FROM docker.io/library/node:20-alpine@sha256:658d0f63e501824d6c23e06d4bb95c71e7d704537c9d9272f488ac03a370d448
+2026-01-07T13:20:42.657214126Z [inf]  [internal] load build context
+2026-01-07T13:20:42.663885312Z [inf]  [1/7] FROM docker.io/library/node:20-alpine@sha256:658d0f63e501824d6c23e06d4bb95c71e7d704537c9d9272f488ac03a370d448
+2026-01-07T13:20:42.664421426Z [inf]  [1/7] FROM docker.io/library/node:20-alpine@sha256:658d0f63e501824d6c23e06d4bb95c71e7d704537c9d9272f488ac03a370d448
+2026-01-07T13:20:42.664468236Z [inf]  [internal] load build context
+2026-01-07T13:20:42.664479976Z [inf]  [2/7] RUN apk add --no-cache ffmpeg
+2026-01-07T13:20:42.720443889Z [inf]  [internal] load build context
+2026-01-07T13:20:43.273063868Z [inf]  (  1/102) Installing libSvtAv1Enc (3.1.2-r0)
 
-2026-01-07T13:12:10.383977139Z [inf]  (  2/102) Installing aom-libs (3.13.1-r0)
+2026-01-07T13:20:43.345947905Z [inf]  (  2/102) Installing aom-libs (3.13.1-r0)
 
-2026-01-07T13:12:10.442232551Z [inf]  (  3/102) Installing libxau (1.0.12-r0)
+2026-01-07T13:20:43.429627936Z [inf]  (  3/102) Installing libxau (1.0.12-r0)
 
-2026-01-07T13:12:10.448842283Z [inf]  (  4/102) Installing libmd (1.1.0-r0)
+2026-01-07T13:20:43.438516945Z [inf]  (  4/102) Installing libmd (1.1.0-r0)
 
-2026-01-07T13:12:10.455530632Z [inf]  (  5/102) Installing libbsd (0.12.2-r0)
+2026-01-07T13:20:43.447680684Z [inf]  (  5/102) Installing libbsd (0.12.2-r0)
 
-2026-01-07T13:12:10.46253736Z [inf]  (  6/102) Installing libxdmcp (1.1.5-r1)
+2026-01-07T13:20:43.457192224Z [inf]  (  6/102) Installing libxdmcp (1.1.5-r1)
 
-2026-01-07T13:12:10.46902221Z [inf]  (  7/102) Installing libxcb (1.17.0-r1)
+2026-01-07T13:20:43.466125908Z [inf]  (  7/102) Installing libxcb (1.17.0-r1)
 
-2026-01-07T13:12:10.483055632Z [inf]  (  8/102) Installing libx11 (1.8.12-r1)
+2026-01-07T13:20:43.484693178Z [inf]  (  8/102) Installing libx11 (1.8.12-r1)
 
-2026-01-07T13:12:10.51156741Z [inf]  (  9/102) Installing hwdata-pci (0.401-r0)
+2026-01-07T13:20:43.521521543Z [inf]  (  9/102) Installing hwdata-pci (0.401-r0)
 
-2026-01-07T13:12:10.526142366Z [inf]  ( 10/102) Installing libpciaccess (0.18.1-r1)
+2026-01-07T13:20:43.54144548Z [inf]  ( 10/102) Installing libpciaccess (0.18.1-r1)
 
-2026-01-07T13:12:10.533168935Z [inf]  ( 11/102) Installing libdrm (2.4.131-r0)
+2026-01-07T13:20:43.551029143Z [inf]  ( 11/102) Installing libdrm (2.4.131-r0)
 
-2026-01-07T13:12:10.546167359Z [inf]  ( 12/102) Installing libxext (1.3.6-r2)
+2026-01-07T13:20:43.568352266Z [inf]  ( 12/102) Installing libxext (1.3.6-r2)
 
-2026-01-07T13:12:10.553606327Z [inf]  ( 13/102) Installing libxfixes (6.0.2-r0)
+2026-01-07T13:20:43.578081247Z [inf]  ( 13/102) Installing libxfixes (6.0.2-r0)
 
-2026-01-07T13:12:10.560186367Z [inf]  ( 14/102) Installing libffi (3.5.2-r0)
+2026-01-07T13:20:43.587194344Z [inf]  ( 14/102) Installing libffi (3.5.2-r0)
 
-2026-01-07T13:12:10.566903377Z [inf]  ( 15/102) Installing wayland-libs-client (1.24.0-r0)
+2026-01-07T13:20:43.596467601Z [inf]  ( 15/102) Installing wayland-libs-client (1.24.0-r0)
 
-2026-01-07T13:12:10.573705689Z [inf]  ( 16/102) Installing libva (2.22.0-r1)
+2026-01-07T13:20:43.605832722Z [inf]  ( 16/102) Installing libva (2.22.0-r1)
 
-2026-01-07T13:12:10.58250237Z [inf]  ( 17/102) Installing libvdpau (1.5-r4)
+2026-01-07T13:20:43.618087088Z [inf]  ( 17/102) Installing libvdpau (1.5-r4)
 
-2026-01-07T13:12:10.589741922Z [inf]  ( 18/102) Installing libvpl (2.15.0-r1)
+2026-01-07T13:20:43.628801015Z [inf]  ( 18/102) Installing libvpl (2.15.0-r1)
 
-2026-01-07T13:12:10.601175331Z [inf]  ( 19/102) Installing ffmpeg-libavutil (8.0.1-r0)
+2026-01-07T13:20:43.643799281Z [inf]  ( 19/102) Installing ffmpeg-libavutil (8.0.1-r0)
 
-2026-01-07T13:12:10.61571034Z [inf]  ( 20/102) Installing libdav1d (1.5.2-r0)
+2026-01-07T13:20:43.663078254Z [inf]  ( 20/102) Installing libdav1d (1.5.2-r0)
 
-2026-01-07T13:12:10.635257015Z [inf]  ( 21/102) Installing brotli-libs (1.2.0-r0)
+2026-01-07T13:20:43.68602209Z [inf]  ( 21/102) Installing brotli-libs (1.2.0-r0)
 
-2026-01-07T13:12:10.648914959Z [inf]  ( 22/102) Installing libhwy (1.3.0-r0)
+2026-01-07T13:20:43.704116329Z [inf]  ( 22/102) Installing libhwy (1.3.0-r0)
 
-2026-01-07T13:12:10.655910477Z [inf]  ( 23/102) Installing lcms2 (2.17-r0)
+2026-01-07T13:20:43.714892358Z [inf]  ( 23/102) Installing lcms2 (2.17-r0)
 
-2026-01-07T13:12:10.665748195Z [inf]  ( 24/102) Installing libjxl (0.11.1-r3)
+2026-01-07T13:20:43.728467919Z [inf]  ( 24/102) Installing libjxl (0.11.1-r3)
 
-2026-01-07T13:12:10.704738501Z [inf]  ( 25/102) Installing lame-libs (3.100-r5)
+2026-01-07T13:20:43.774898225Z [inf]  ( 25/102) Installing lame-libs (3.100-r5)
 
-2026-01-07T13:12:10.713310047Z [inf]  ( 26/102) Installing opus (1.5.2-r1)
+2026-01-07T13:20:43.785805906Z [inf]  ( 26/102) Installing opus (1.5.2-r1)
 
-2026-01-07T13:12:10.724413206Z [inf]  ( 27/102) Installing rav1e-libs (0.8.1-r0)
+2026-01-07T13:20:43.799788043Z [inf]  ( 27/102) Installing rav1e-libs (0.8.1-r0)
 
-2026-01-07T13:12:10.746517701Z [inf]  ( 28/102) Installing spirv-tools (1.4.321.0-r1)
+2026-01-07T13:20:43.828603087Z [inf]  ( 28/102) Installing spirv-tools (1.4.321.0-r1)
 
-2026-01-07T13:12:10.786843835Z [inf]  ( 29/102) Installing glslang-libs (1.4.321.0-r0)
+2026-01-07T13:20:43.872594051Z [inf]  ( 29/102) Installing glslang-libs (1.4.321.0-r0)
 
-2026-01-07T13:12:10.807889581Z [inf]  ( 30/102) Installing shaderc (2025.3-r0)
+2026-01-07T13:20:43.897842813Z [inf]  ( 30/102) Installing shaderc (2025.3-r0)
 
-2026-01-07T13:12:10.816239168Z [inf]  ( 31/102) Installing libgomp (15.2.0-r2)
+2026-01-07T13:20:43.909759433Z [inf]  ( 31/102) Installing libgomp (15.2.0-r2)
 
-2026-01-07T13:12:10.826715971Z [inf]  ( 32/102) Installing soxr (0.1.3-r7)
+2026-01-07T13:20:43.922283041Z [inf]  ( 32/102) Installing soxr (0.1.3-r7)
 
-2026-01-07T13:12:10.834543256Z [inf]  ( 33/102) Installing ffmpeg-libswresample (8.0.1-r0)
+2026-01-07T13:20:43.932610368Z [inf]  ( 33/102) Installing ffmpeg-libswresample (8.0.1-r0)
 
-2026-01-07T13:12:10.842092432Z [inf]  ( 34/102) Installing libogg (1.3.6-r0)
+2026-01-07T13:20:43.943935154Z [inf]  ( 34/102) Installing libogg (1.3.6-r0)
 
-2026-01-07T13:12:10.848955469Z [inf]  ( 35/102) Installing libtheora (1.2.0-r0)
+2026-01-07T13:20:43.955661948Z [inf]  ( 35/102) Installing libtheora (1.2.0-r0)
 
-2026-01-07T13:12:10.862005973Z [inf]  ( 36/102) Installing libvorbis (1.3.7-r2)
+2026-01-07T13:20:43.974692871Z [inf]  ( 36/102) Installing libvorbis (1.3.7-r2)
 
-2026-01-07T13:12:10.872926262Z [inf]  ( 37/102) Installing libvpx (1.15.2-r0)
+2026-01-07T13:20:43.989698662Z [inf]  ( 37/102) Installing libvpx (1.15.2-r0)
 
-2026-01-07T13:12:10.901722123Z [inf]  ( 38/102) Installing libsharpyuv (1.6.0-r0)
+2026-01-07T13:20:44.028339275Z [inf]  ( 38/102) Installing libsharpyuv (1.6.0-r0)
 
-2026-01-07T13:12:10.908398802Z [inf]  ( 39/102) Installing libwebp (1.6.0-r0)
+2026-01-07T13:20:44.037297765Z [inf]  ( 39/102) Installing libwebp (1.6.0-r0)
 
-2026-01-07T13:12:10.920518048Z [inf]  ( 40/102) Installing libwebpmux (1.6.0-r0)
+2026-01-07T13:20:44.05224985Z [inf]  ( 40/102) Installing libwebpmux (1.6.0-r0)
 
-2026-01-07T13:12:10.927453851Z [inf]  ( 41/102) Installing x264-libs (0.164.3108-r1)
+2026-01-07T13:20:44.061408347Z [inf]  ( 41/102) Installing x264-libs (0.164.3108-r1)
 
-2026-01-07T13:12:10.949950932Z [inf]  ( 42/102) Installing numactl (2.0.18-r0)
+2026-01-07T13:20:44.087737005Z [inf]  ( 42/102) Installing numactl (2.0.18-r0)
 
-2026-01-07T13:12:10.956893599Z [inf]  ( 43/102) Installing x265-libs (4.1-r0)
+2026-01-07T13:20:44.098156456Z [inf]  ( 43/102) Installing x265-libs (4.1-r0)
 
-2026-01-07T13:12:11.042158587Z [inf]  ( 44/102) Installing xvidcore (1.3.7-r2)
+2026-01-07T13:20:44.214563937Z [inf]  ( 44/102) Installing xvidcore (1.3.7-r2)
 
-2026-01-07T13:12:11.052131075Z [inf]  ( 45/102) Installing ffmpeg-libavcodec (8.0.1-r0)
+2026-01-07T13:20:44.227095341Z [inf]  ( 45/102) Installing ffmpeg-libavcodec (8.0.1-r0)
 
-2026-01-07T13:12:11.194814392Z [inf]  ( 46/102) Installing alsa-lib (1.2.14-r2)
+2026-01-07T13:20:44.383421409Z [inf]  ( 46/102) Installing alsa-lib (1.2.14-r2)
 
-2026-01-07T13:12:11.213350372Z [inf]  ( 47/102) Installing libexpat (2.7.3-r0)
+2026-01-07T13:20:44.406307585Z [inf]  ( 47/102) Installing libexpat (2.7.3-r0)
 
-2026-01-07T13:12:11.220992819Z [inf]  ( 48/102) Installing libbz2 (1.0.8-r6)
+2026-01-07T13:20:44.416099927Z [inf]  ( 48/102) Installing libbz2 (1.0.8-r6)
 
-2026-01-07T13:12:11.228216499Z [inf]  ( 49/102) Installing libpng (1.6.53-r0)
+2026-01-07T13:20:44.425460142Z [inf]  ( 49/102) Installing libpng (1.6.53-r0)
 
-2026-01-07T13:12:11.23645693Z [inf]  ( 50/102) Installing freetype (2.14.1-r0)
+2026-01-07T13:20:44.436048227Z [inf]  ( 50/102) Installing freetype (2.14.1-r0)
 
-2026-01-07T13:12:11.250328087Z [inf]  ( 51/102) Installing fontconfig (2.17.1-r0)
+2026-01-07T13:20:44.453734387Z [inf]  ( 51/102) Installing fontconfig (2.17.1-r0)
 
-2026-01-07T13:12:11.263906167Z [inf]  ( 52/102) Installing fribidi (1.0.16-r2)
+2026-01-07T13:20:44.471085636Z [inf]  ( 52/102) Installing fribidi (1.0.16-r2)
 
-2026-01-07T13:12:11.271208555Z [inf]  ( 53/102) Installing libintl (0.24.1-r1)
+2026-01-07T13:20:44.480615651Z [inf]  ( 53/102) Installing libintl (0.24.1-r1)
 
-2026-01-07T13:12:11.278575976Z [inf]  ( 54/102) Installing libeconf (0.8.0-r0)
+2026-01-07T13:20:44.491768351Z [inf]  ( 54/102) Installing libeconf (0.8.0-r0)
 
-2026-01-07T13:12:11.285785062Z [inf]  ( 55/102) Installing libblkid (2.41.2-r0)
+2026-01-07T13:20:44.501138736Z [inf]  ( 55/102) Installing libblkid (2.41.2-r0)
 
-2026-01-07T13:12:11.294163771Z [inf]  ( 56/102) Installing libmount (2.41.2-r0)
+2026-01-07T13:20:44.512492368Z [inf]  ( 56/102) Installing libmount (2.41.2-r0)
 
-2026-01-07T13:12:11.30467608Z [inf]  ( 57/102) Installing pcre2 (10.47-r0)
+2026-01-07T13:20:44.524154971Z [inf]  ( 57/102) Installing pcre2 (10.47-r0)
 
-2026-01-07T13:12:11.318043416Z [inf]  ( 58/102) Installing glib (2.86.3-r0)
+2026-01-07T13:20:44.539695619Z [inf]  ( 58/102) Installing glib (2.86.3-r0)
 
-2026-01-07T13:12:11.360349893Z [inf]  ( 59/102) Installing graphite2 (1.3.14-r6)
+2026-01-07T13:20:44.589318043Z [inf]  ( 59/102) Installing graphite2 (1.3.14-r6)
 
-2026-01-07T13:12:11.368654662Z [inf]  ( 60/102) Installing harfbuzz (12.2.0-r0)
+2026-01-07T13:20:44.59925478Z [inf]  ( 60/102) Installing harfbuzz (12.2.0-r0)
 
-2026-01-07T13:12:11.386981192Z [inf]  ( 61/102) Installing libunibreak (6.1-r0)
+2026-01-07T13:20:44.620730923Z [inf]  ( 61/102) Installing libunibreak (6.1-r0)
 
-2026-01-07T13:12:11.394642866Z [inf]  ( 62/102) Installing libass (0.17.4-r0)
+2026-01-07T13:20:44.630893042Z [inf]  ( 62/102) Installing libass (0.17.4-r0)
 
-2026-01-07T13:12:11.403962443Z [inf]  ( 63/102) Installing libudfread (1.2.0-r0)
+2026-01-07T13:20:44.643236842Z [inf]  ( 63/102) Installing libudfread (1.2.0-r0)
 
-2026-01-07T13:12:11.410578022Z [inf]  ( 64/102) Installing libbluray (1.4.0-r0)
+2026-01-07T13:20:44.653687311Z [inf]  ( 64/102) Installing libbluray (1.4.0-r0)
 
-2026-01-07T13:12:11.41943747Z [inf]  ( 65/102) Installing mpg123-libs (1.33.3-r0)
+2026-01-07T13:20:44.665567025Z [inf]  ( 65/102) Installing mpg123-libs (1.33.3-r0)
 
-2026-01-07T13:12:11.429824139Z [inf]  ( 66/102) Installing libopenmpt (0.8.3-r0)
+2026-01-07T13:20:44.67824114Z [inf]  ( 66/102) Installing libopenmpt (0.8.3-r0)
 
-2026-01-07T13:12:11.447259224Z [inf]  ( 67/102) Installing cjson (1.7.19-r1)
+2026-01-07T13:20:44.698948777Z [inf]  ( 67/102) Installing cjson (1.7.19-r1)
 
-2026-01-07T13:12:11.453902613Z [inf]  ( 68/102) Installing mbedtls (3.6.5-r0)
+2026-01-07T13:20:44.709129393Z [inf]  ( 68/102) Installing mbedtls (3.6.5-r0)
 
-2026-01-07T13:12:11.467950142Z [inf]  ( 69/102) Installing librist (0.2.10-r1)
+2026-01-07T13:20:44.725554874Z [inf]  ( 69/102) Installing librist (0.2.10-r1)
 
-2026-01-07T13:12:11.476009189Z [inf]  ( 70/102) Installing libsrt (1.5.3-r1)
+2026-01-07T13:20:44.739925707Z [inf]  ( 70/102) Installing libsrt (1.5.3-r1)
 
-2026-01-07T13:12:11.489838166Z [inf]  ( 71/102) Installing libssh (0.11.3-r0)
+2026-01-07T13:20:44.756520637Z [inf]  ( 71/102) Installing libssh (0.11.3-r0)
 
-2026-01-07T13:12:11.500389361Z [inf]  ( 72/102) Installing xz-libs (5.8.1-r0)
+2026-01-07T13:20:44.769120275Z [inf]  ( 72/102) Installing xz-libs (5.8.1-r0)
 
-2026-01-07T13:12:11.509052459Z [inf]  ( 73/102) Installing libxml2 (2.13.9-r0)
+2026-01-07T13:20:44.779981333Z [inf]  ( 73/102) Installing libxml2 (2.13.9-r0)
 
-2026-01-07T13:12:11.524432333Z [inf]  ( 74/102) Installing libsodium (1.0.20-r1)
+2026-01-07T13:20:44.798521366Z [inf]  ( 74/102) Installing libsodium (1.0.20-r1)
 
-2026-01-07T13:12:11.534348216Z [inf]  ( 75/102) Installing libzmq (4.3.5-r2)
+2026-01-07T13:20:44.810781689Z [inf]  ( 75/102) Installing libzmq (4.3.5-r2)
 
-2026-01-07T13:12:11.546229192Z [inf]  ( 76/102) Installing ffmpeg-libavformat (8.0.1-r0)
+2026-01-07T13:20:44.824883904Z [inf]  ( 76/102) Installing ffmpeg-libavformat (8.0.1-r0)
 
-2026-01-07T13:12:11.576717084Z [inf]  ( 77/102) Installing serd-libs (0.32.4-r0)
+2026-01-07T13:20:44.859238093Z [inf]  ( 77/102) Installing serd-libs (0.32.4-r0)
 
-2026-01-07T13:12:11.58404263Z [inf]  ( 78/102) Installing zix-libs (0.6.2-r0)
+2026-01-07T13:20:44.869861835Z [inf]  ( 78/102) Installing zix-libs (0.6.2-r0)
 
-2026-01-07T13:12:11.591116575Z [inf]  ( 79/102) Installing sord-libs (0.16.18-r0)
+2026-01-07T13:20:44.879619835Z [inf]  ( 79/102) Installing sord-libs (0.16.18-r0)
 
-2026-01-07T13:12:11.59793401Z [inf]  ( 80/102) Installing sratom (0.6.18-r0)
+2026-01-07T13:20:44.889848553Z [inf]  ( 80/102) Installing sratom (0.6.18-r0)
 
-2026-01-07T13:12:11.604694679Z [inf]  ( 81/102) Installing lilv-libs (0.24.26-r0)
+2026-01-07T13:20:44.899451514Z [inf]  ( 81/102) Installing lilv-libs (0.24.26-r0)
 
-2026-01-07T13:12:11.612223213Z [inf]  ( 82/102) Installing libdovi (3.3.2-r0)
+2026-01-07T13:20:44.910071303Z [inf]  ( 82/102) Installing libdovi (3.3.2-r0)
 
-2026-01-07T13:12:11.623480372Z [inf]  ( 83/102) Installing vulkan-loader (1.4.321.0-r0)
+2026-01-07T13:20:44.923768185Z [inf]  ( 83/102) Installing vulkan-loader (1.4.321.0-r0)
 
-2026-01-07T13:12:11.634488121Z [inf]  ( 84/102) Installing libplacebo (7.351.0-r0)
+2026-01-07T13:20:44.937100348Z [inf]  ( 84/102) Installing libplacebo (7.351.0-r0)
 
-2026-01-07T13:12:11.649680434Z [inf]  ( 85/102) Installing ffmpeg-libswscale (8.0.1-r0)
+2026-01-07T13:20:44.955199548Z [inf]  ( 85/102) Installing ffmpeg-libswscale (8.0.1-r0)
 
-2026-01-07T13:12:11.668377342Z [inf]  ( 86/102) Installing vidstab (1.1.1-r0)
+2026-01-07T13:20:44.981436168Z [inf]  ( 86/102) Installing vidstab (1.1.1-r0)
 
-2026-01-07T13:12:11.676031612Z [inf]  ( 87/102) Installing zimg (3.0.6-r0)
+2026-01-07T13:20:44.994213467Z [inf]  ( 87/102) Installing zimg (3.0.6-r0)
 
-2026-01-07T13:12:11.688995762Z [inf]  ( 88/102) Installing ffmpeg-libavfilter (8.0.1-r0)
+2026-01-07T13:20:45.008089318Z [inf]  ( 88/102) Installing ffmpeg-libavfilter (8.0.1-r0)
 
-2026-01-07T13:12:11.738820855Z [inf]  ( 89/102) Installing libasyncns (0.8-r4)
+2026-01-07T13:20:45.063903524Z [inf]  ( 89/102) Installing libasyncns (0.8-r4)
 
-2026-01-07T13:12:11.745560875Z [inf]  ( 90/102) Installing dbus-libs (1.16.2-r1)
+2026-01-07T13:20:45.073138876Z [inf]  ( 90/102) Installing dbus-libs (1.16.2-r1)
 
-2026-01-07T13:12:11.755205479Z [inf]  ( 91/102) Installing libltdl (2.5.4-r2)
+2026-01-07T13:20:45.085280519Z [inf]  ( 91/102) Installing libltdl (2.5.4-r2)
 
-2026-01-07T13:12:11.762376256Z [inf]  ( 92/102) Installing orc (0.4.41-r0)
+2026-01-07T13:20:45.094881681Z [inf]  ( 92/102) Installing orc (0.4.41-r0)
 
-2026-01-07T13:12:11.773644651Z [inf]  ( 93/102) Installing libflac (1.4.3-r2)
+2026-01-07T13:20:45.109298426Z [inf]  ( 93/102) Installing libflac (1.4.3-r2)
 
-2026-01-07T13:12:11.784295051Z [inf]  ( 94/102) Installing libsndfile (1.2.2-r2)
+2026-01-07T13:20:45.122701202Z [inf]  ( 94/102) Installing libsndfile (1.2.2-r2)
 
-2026-01-07T13:12:11.796068916Z [inf]  ( 95/102) Installing speexdsp (1.2.1-r2)
+2026-01-07T13:20:45.137349476Z [inf]  ( 95/102) Installing speexdsp (1.2.1-r2)
 
-2026-01-07T13:12:11.803167875Z [inf]  ( 96/102) Installing tdb-libs (1.4.14-r0)
+2026-01-07T13:20:45.147283171Z [inf]  ( 96/102) Installing tdb-libs (1.4.14-r0)
 
-2026-01-07T13:12:11.810344519Z [inf]  ( 97/102) Installing libpulse (17.0-r5)
+2026-01-07T13:20:45.157121058Z [inf]  ( 97/102) Installing libpulse (17.0-r5)
 
-2026-01-07T13:12:11.827363625Z [inf]  ( 98/102) Installing libjpeg-turbo (3.1.2-r0)
+2026-01-07T13:20:45.177412815Z [inf]  ( 98/102) Installing libjpeg-turbo (3.1.2-r0)
 
-2026-01-07T13:12:11.842819132Z [inf]  ( 99/102) Installing json-c (0.18-r1)
+2026-01-07T13:20:45.191064914Z [inf]  ( 99/102) Installing json-c (0.18-r1)
 
-2026-01-07T13:12:11.850600307Z [inf]  (100/102) Installing v4l-utils-libs (1.32.0-r0)
+2026-01-07T13:20:45.200917459Z [inf]  (100/102) Installing v4l-utils-libs (1.32.0-r0)
 
-2026-01-07T13:12:11.86196085Z [inf]  (101/102) Installing ffmpeg-libavdevice (8.0.1-r0)
+2026-01-07T13:20:45.215000487Z [inf]  (101/102) Installing ffmpeg-libavdevice (8.0.1-r0)
 
-2026-01-07T13:12:11.870125705Z [inf]  (102/102) Installing ffmpeg (8.0.1-r0)
+2026-01-07T13:20:45.225399706Z [inf]  (102/102) Installing ffmpeg (8.0.1-r0)
 
-2026-01-07T13:12:11.882166517Z [inf]  Executing busybox-1.37.0-r30.trigger
+2026-01-07T13:20:45.241616396Z [inf]  Executing busybox-1.37.0-r30.trigger
 
-2026-01-07T13:12:11.885871934Z [inf]  Executing glib-2.86.3-r0.trigger
+2026-01-07T13:20:45.247936223Z [inf]  Executing glib-2.86.3-r0.trigger
 
-2026-01-07T13:12:11.889475428Z [inf]  OK: 135.5 MiB in 120 packages
+2026-01-07T13:20:45.254449807Z [inf]  OK: 135.5 MiB in 120 packages
 
-2026-01-07T13:12:12.017316095Z [inf]  [2/7] RUN apk add --no-cache ffmpeg
-2026-01-07T13:12:12.019491272Z [inf]  [3/7] WORKDIR /app
-2026-01-07T13:12:12.037333384Z [inf]  [3/7] WORKDIR /app
-2026-01-07T13:12:12.037923262Z [inf]  [4/7] COPY package*.json ./
-2026-01-07T13:12:12.052022269Z [inf]  [4/7] COPY package*.json ./
-2026-01-07T13:12:12.053091746Z [inf]  [5/7] RUN npm ci
-2026-01-07T13:12:14.626212898Z [inf]  npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+2026-01-07T13:20:45.321348261Z [inf]  [2/7] RUN apk add --no-cache ffmpeg
+2026-01-07T13:20:45.329126449Z [inf]  [3/7] WORKDIR /app
+2026-01-07T13:20:45.388117193Z [inf]  [3/7] WORKDIR /app
+2026-01-07T13:20:45.389671328Z [inf]  [4/7] COPY package*.json ./
+2026-01-07T13:20:45.410966212Z [inf]  [4/7] COPY package*.json ./
+2026-01-07T13:20:45.412633339Z [inf]  [5/7] RUN npm ci
+2026-01-07T13:20:49.550327463Z [inf]  npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
 
-2026-01-07T13:12:14.803499357Z [inf]  npm warn deprecated node-domexception@1.0.0: Use your platform's native DOMException instead
+2026-01-07T13:20:50.358554523Z [inf]  npm warn deprecated node-domexception@1.0.0: Use your platform's native DOMException instead
 
-2026-01-07T13:12:15.083491083Z [inf]  npm warn deprecated @types/socket.io@3.0.2: This is a stub types definition. socket.io provides its own type definitions, so you do not need this installed.
+2026-01-07T13:20:50.591422186Z [inf]  npm warn deprecated @types/socket.io@3.0.2: This is a stub types definition. socket.io provides its own type definitions, so you do not need this installed.
 
-2026-01-07T13:12:15.157212168Z [inf]  npm warn deprecated @types/bcryptjs@3.0.0: This is a stub types definition. bcryptjs provides its own type definitions, so you do not need this installed.
+2026-01-07T13:20:50.743816996Z [inf]  npm warn deprecated @types/bcryptjs@3.0.0: This is a stub types definition. bcryptjs provides its own type definitions, so you do not need this installed.
 
-2026-01-07T13:12:15.549596081Z [inf]  npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+2026-01-07T13:20:51.165750141Z [inf]  npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
 
-2026-01-07T13:12:18.279002617Z [inf]  
-added 542 packages, and audited 543 packages in 6s
+2026-01-07T13:20:55.773452417Z [inf]  
+added 542 packages, and audited 543 packages in 10s
 
-2026-01-07T13:12:18.2790169Z [inf]  
+2026-01-07T13:20:55.773476096Z [inf]  
 
-2026-01-07T13:12:18.27906811Z [inf]  75 packages are looking for funding
+2026-01-07T13:20:55.773529145Z [inf]  75 packages are looking for funding
   run `npm fund` for details
 
-2026-01-07T13:12:18.281172547Z [inf]  
+2026-01-07T13:20:55.776629485Z [inf]  
 1 high severity vulnerability
 
 To address all issues, run:
@@ -277,147 +275,42 @@ To address all issues, run:
 
 Run `npm audit` for details.
 
-2026-01-07T13:12:18.282248092Z [inf]  npm notice
+2026-01-07T13:20:55.778117144Z [inf]  npm notice
 npm notice New major version of npm available! 10.8.2 -> 11.7.0
 npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.7.0
 npm notice To update run: npm install -g npm@11.7.0
 npm notice
 
-2026-01-07T13:12:18.524487446Z [inf]  [5/7] RUN npm ci
-2026-01-07T13:12:18.526397719Z [inf]  [6/7] COPY . .
-2026-01-07T13:12:18.635299741Z [inf]  [6/7] COPY . .
-2026-01-07T13:12:18.636137307Z [inf]  [7/7] RUN npm run build
-2026-01-07T13:12:18.821379373Z [inf]  
+2026-01-07T13:20:56.222430466Z [inf]  [5/7] RUN npm ci
+2026-01-07T13:20:56.228679816Z [inf]  [6/7] COPY . .
+2026-01-07T13:20:56.393880491Z [inf]  [6/7] COPY . .
+2026-01-07T13:20:56.395750952Z [inf]  [7/7] RUN npm run build
+2026-01-07T13:20:56.635535063Z [inf]  
 > linda-backend@1.0.0 build
 > tsc
 
 
-2026-01-07T13:12:22.454273961Z [inf]  src/lib/websocket.ts(100,16): error TS7006: Parameter 'resident' implicitly has an 'any' type.
+2026-01-07T13:21:01.249782138Z [inf]  src/routes/lifebook.ts(118,42): error TS2339: Property 'map' does not exist on type 'unknown'.
 
-2026-01-07T13:12:22.454500325Z [inf]  src/routes/auth.ts(13,13): error TS6133: 'req' is declared but its value is never read.
-
-2026-01-07T13:12:22.454533687Z [inf]  src/routes/calls.ts(72,45): error TS2345: Argument of type '{ mode_inbound: boolean; mode_outbound: boolean; memories: any; last_call_summary: string; favorite_topics: string; preferred_name: string; full_name: string; room_number: string; communication_notes: string; ... 23 more ...; memory_layer_context?: string; }' is not assignable to parameter of type 'never'.
-  The intersection 'RetellDynamicVariables & { mode_outbound: boolean; mode_inbound: boolean; }' was reduced to 'never' because property 'mode_outbound' has conflicting types in some constituents.
-src/routes/family-checkins.ts(187,34): error TS7030: Not all code paths return a value.
-
-2026-01-07T13:12:22.454557388Z [inf]  src/routes/family-checkins.ts(231,51): error TS7030: Not all code paths return a value.
-
-2026-01-07T13:12:22.454563173Z [inf]  src/routes/family-members.ts(26,32): error TS7030: Not all code paths return a value.
-
-2026-01-07T13:12:22.454588308Z [inf]  src/routes/family-members.ts(88,34): error TS7030: Not all code paths return a value.
-
-2026-01-07T13:12:22.454592084Z [inf]  src/routes/family-members.ts(139,38): error TS7030: Not all code paths return a value.
-
-2026-01-07T13:12:22.454713836Z [inf]  src/routes/family-members.ts(172,51): error TS7030: Not all code paths return a value.
-
-2026-01-07T13:12:22.454777918Z [inf]  src/routes/family-members.ts(216,36): error TS7030: Not all code paths return a value.
-
-2026-01-07T13:12:22.454858976Z [inf]  src/routes/inbound.ts(5,1): error TS6133: 'RetellDynamicVariables' is declared but its value is never read.
-
-2026-01-07T13:12:22.454896078Z [inf]  src/routes/inbound.ts(212,45): error TS2345: Argument of type '{ mode_inbound: boolean; mode_outbound: boolean; memories: any; last_call_summary: string; favorite_topics: string; recent_context: string; preferred_name: string; full_name: string; room_number: string; ... 23 more ...; memory_layer_context?: string; }' is not assignable to parameter of type 'never'.
-  The intersection 'RetellDynamicVariables & { mode_outbound: boolean; mode_inbound: boolean; }' was reduced to 'never' because property 'mode_outbound' has conflicting types in some constituents.
-
-2026-01-07T13:12:22.454967274Z [inf]  src/routes/lifebook.ts(99,49): error TS7006: Parameter 'acc' implicitly has an 'any' type.
-src/routes/lifebook.ts(99,54): error TS7006: Parameter 'segment' implicitly has an 'any' type.
-src/routes/lifebook.ts(118,25): error TS18046: 'categorySegments' is of type 'unknown'.
-src/routes/lifebook.ts(118,47): error TS7006: Parameter 'segment' implicitly has an 'any' type.
-src/routes/lifebook.ts(118,56): error TS6133: 'storyIndex' is declared but its value is never read.
-
-2026-01-07T13:12:22.455088681Z [inf]  src/routes/lifebook.ts(118,56): error TS7006: Parameter 'storyIndex' implicitly has an 'any' type.
-src/routes/lifebook.ts(165,8): error TS7006: Parameter 'sum' implicitly has an 'any' type.
-
-2026-01-07T13:12:22.4551674Z [inf]  src/routes/lifebook.ts(165,13): error TS7006: Parameter 'seg' implicitly has an 'any' type.
-src/routes/lifebook.ts(228,24): error TS6133: 'resident' is declared but its value is never read.
-src/routes/scheduling.ts(14,25): error TS6133: 'daysAhead' is declared but its value is never read.
-
-2026-01-07T13:12:22.455231433Z [inf]  src/routes/scheduling.ts(46,37): error TS7006: Parameter 'resident' implicitly has an 'any' type.
-
-2026-01-07T13:12:22.455258386Z [inf]  src/routes/scheduling.ts(63,20): error TS7006: Parameter 'a' implicitly has an 'any' type.
-src/routes/scheduling.ts(63,23): error TS7006: Parameter 'b' implicitly has an 'any' type.
-
-2026-01-07T13:12:22.455267325Z [inf]  src/routes/scheduling.ts(149,48): error TS18048: 'req.user' is possibly 'undefined'.
-
-2026-01-07T13:12:22.455270703Z [inf]  src/routes/scheduling.ts(277,59): error TS6133: 'preferredTimes' is declared but its value is never read.
-
-2026-01-07T13:12:22.455310587Z [inf]  src/routes/staff-dashboard.ts(59,40): error TS7006: Parameter 'checkIn' implicitly has an 'any' type.
-src/routes/staff-dashboard.ts(135,40): error TS7006: Parameter 'c' implicitly has an 'any' type.
-
-2026-01-07T13:12:22.455313794Z [inf]  src/routes/staff-dashboard.ts(136,37): error TS7006: Parameter 'c' implicitly has an 'any' type.
-src/routes/staff-dashboard.ts(139,8): error TS7006: Parameter 'c' implicitly has an 'any' type.
-
-2026-01-07T13:12:22.455343653Z [inf]  src/routes/staff-dashboard.ts(148,23): error TS7006: Parameter 'checkIn' implicitly has an 'any' type.
-src/routes/staff-dashboard.ts(221,37): error TS7006: Parameter 'checkIn' implicitly has an 'any' type.
-src/routes/staff-dashboard.ts(257,62): error TS7030: Not all code paths return a value.
-src/routes/viewer.ts(8,28): error TS7030: Not all code paths return a value.
-
-2026-01-07T13:12:22.455360078Z [inf]  src/routes/webhooks.ts(6,1): error TS6133: 'RetellWebhookEvent' is declared but its value is never read.
-
-2026-01-07T13:12:22.455396081Z [inf]  src/services/bookAssembly.ts(184,38): error TS7006: Parameter 's' implicitly has an 'any' type.
-src/services/bookReadiness.ts(61,43): error TS7006: Parameter 's' implicitly has an 'any' type.
-
-2026-01-07T13:12:22.455408673Z [inf]  src/services/bookReadiness.ts(62,43): error TS7006: Parameter 's' implicitly has an 'any' type.
-src/services/bookReadiness.ts(63,48): error TS7006: Parameter 's' implicitly has an 'any' type.
-
-2026-01-07T13:12:22.455434474Z [inf]  src/services/bookReadiness.ts(66,47): error TS7006: Parameter 's' implicitly has an 'any' type.
-src/services/bookReadiness.ts(70,38): error TS7006: Parameter 's' implicitly has an 'any' type.
-
-2026-01-07T13:12:22.45544743Z [inf]  src/services/bookReadiness.ts(77,21): error TS7006: Parameter 's' implicitly has an 'any' type.
-src/services/bookReadiness.ts(84,47): error TS7006: Parameter 's' implicitly has an 'any' type.
-src/services/bookReadiness.ts(86,32): error TS7006: Parameter 'sum' implicitly has an 'any' type.
-
-2026-01-07T13:12:22.455474915Z [inf]  src/services/bookReadiness.ts(86,37): error TS7006: Parameter 's' implicitly has an 'any' type.
-
-2026-01-07T13:12:22.455495621Z [inf]  src/services/bookReadiness.ts(138,5): error TS2322: Type '{ chapter: {}; segmentCount: any; avgQuality: number; }[]' is not assignable to type '{ chapter: string; segmentCount: number; avgQuality: number; }[]'.
-  Type '{ chapter: {}; segmentCount: any; avgQuality: number; }' is not assignable to type '{ chapter: string; segmentCount: number; avgQuality: number; }'.
+2026-01-07T13:21:01.250032381Z [inf]  src/services/bookReadiness.ts(138,5): error TS2322: Type '{ chapter: unknown; segmentCount: any; avgQuality: number; }[]' is not assignable to type '{ chapter: string; segmentCount: number; avgQuality: number; }[]'.
+  Type '{ chapter: unknown; segmentCount: any; avgQuality: number; }' is not assignable to type '{ chapter: string; segmentCount: number; avgQuality: number; }'.
     Types of property 'chapter' are incompatible.
-      Type '{}' is not assignable to type 'string'.
-src/services/bookReadiness.ts(153,20): error TS7006: Parameter 'r' implicitly has an 'any' type.
+      Type 'unknown' is not assignable to type 'string'.
 
-2026-01-07T13:12:22.455513284Z [inf]  src/services/concernNotifications.ts(137,58): error TS6133: 'facilityId' is declared but its value is never read.
-src/services/contextBuilder.ts(163,11): error TS7006: Parameter 'memory' implicitly has an 'any' type.
+2026-01-07T13:21:01.250059752Z [inf]  src/services/copyEditor.ts(209,33): error TS2339: Property 'transcriptText' does not exist on type 'unknown'.
+src/services/copyEditor.ts(210,29): error TS2339: Property 'pullQuotes' does not exist on type 'unknown'.
 
-2026-01-07T13:12:22.455535027Z [inf]  src/services/contextBuilder.ts(167,11): error TS7006: Parameter 'm' implicitly has an 'any' type.
-src/services/contextBuilder.ts(245,15): error TS7006: Parameter 'e' implicitly has an 'any' type.
+2026-01-07T13:21:01.250152337Z [inf]  src/services/copyEditor.ts(211,32): error TS2339: Property 'emotionalTone' does not exist on type 'unknown'.
+src/services/copyEditor.ts(212,31): error TS2339: Property 'call' does not exist on type 'unknown'.
+src/services/copyEditor.ts(213,30): error TS2339: Property 'call' does not exist on type 'unknown'.
 
-2026-01-07T13:12:22.455551115Z [inf]  src/services/contextBuilder.ts(287,27): error TS7006: Parameter 'e' implicitly has an 'any' type.
-src/services/contextBuilder.ts(296,22): error TS7006: Parameter 'c' implicitly has an 'any' type.
-
-2026-01-07T13:12:22.455569658Z [inf]  src/services/copyEditor.ts(196,44): error TS7006: Parameter 's' implicitly has an 'any' type.
-
-2026-01-07T13:12:22.455591383Z [inf]  src/services/copyEditor.ts(209,33): error TS2339: Property 'transcriptText' does not exist on type '{}'.
-
-2026-01-07T13:12:22.455618977Z [inf]  src/services/copyEditor.ts(210,29): error TS2339: Property 'pullQuotes' does not exist on type '{}'.
-
-2026-01-07T13:12:22.455643715Z [inf]  src/services/copyEditor.ts(211,32): error TS2339: Property 'emotionalTone' does not exist on type '{}'.
-src/services/copyEditor.ts(212,31): error TS2339: Property 'call' does not exist on type '{}'.
-src/services/copyEditor.ts(213,30): error TS2339: Property 'call' does not exist on type '{}'.
-
-2026-01-07T13:12:22.455647147Z [inf]  src/services/familyCheckInSummary.ts(135,38): error TS7006: Parameter 'call' implicitly has an 'any' type.
-
-2026-01-07T13:12:22.455670362Z [inf]  src/services/familyCheckInSummary.ts(139,27): error TS7006: Parameter 'seg' implicitly has an 'any' type.
-src/services/familyCheckInSummary.ts(144,11): error TS7006: Parameter 'seg' implicitly has an 'any' type.
-
-2026-01-07T13:12:22.455689009Z [inf]  src/services/familyCheckInSummary.ts(144,16): error TS7006: Parameter 'idx' implicitly has an 'any' type.
-
-2026-01-07T13:12:22.455693267Z [inf]  src/services/familyCheckInSummary.ts(155,11): error TS7006: Parameter 'seg' implicitly has an 'any' type.
-src/services/familyCheckInSummary.ts(155,16): error TS7006: Parameter 'idx' implicitly has an 'any' type.
-
-2026-01-07T13:12:22.455720331Z [inf]  src/services/familyCheckInSummary.ts(229,49): error TS7006: Parameter 'seg' implicitly has an 'any' type.
-src/services/familyCheckInSummary.ts(258,3): error TS6133: 'relationship' is declared but its value is never read.
-
-2026-01-07T13:12:22.455726533Z [inf]  src/services/scheduler.ts(252,21): error TS2538: Type 'undefined' cannot be used as an index type.
-
-2026-01-07T13:12:22.455730861Z [inf]  src/services/scheduler.ts(252,52): error TS2538: Type 'undefined' cannot be used as an index type.
-
-2026-01-07T13:12:22.455749593Z [inf]  src/workers/identifyStorySegments.ts(305,40): error TS2304: Cannot find name 'text'.
-
-2026-01-07T13:12:22.599068498Z [err]  [7/7] RUN npm run build
-2026-01-07T13:12:22.612570836Z [err]  Dockerfile:18
-2026-01-07T13:12:22.612605002Z [err]  -------------------
-2026-01-07T13:12:22.612611021Z [err]  16 |
-2026-01-07T13:12:22.612616550Z [err]  17 |     # Build Typescript files
-2026-01-07T13:12:22.612623260Z [err]  18 | >>> RUN npm run build
-2026-01-07T13:12:22.612628293Z [err]  19 |
-2026-01-07T13:12:22.612633663Z [err]  20 |     # Expose application port (make sure it matches your app PORT)
-2026-01-07T13:12:22.612638401Z [err]  -------------------
-2026-01-07T13:12:22.612643871Z [err]  ERROR: failed to build: failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 2
+2026-01-07T13:21:01.330718883Z [err]  [7/7] RUN npm run build
+2026-01-07T13:21:01.348350808Z [err]  Dockerfile:18
+2026-01-07T13:21:01.348401920Z [err]  -------------------
+2026-01-07T13:21:01.348411216Z [err]  16 |
+2026-01-07T13:21:01.348419830Z [err]  17 |     # Build Typescript files
+2026-01-07T13:21:01.348429595Z [err]  18 | >>> RUN npm run build
+2026-01-07T13:21:01.348436237Z [err]  19 |
+2026-01-07T13:21:01.348445209Z [err]  20 |     # Expose application port (make sure it matches your app PORT)
+2026-01-07T13:21:01.348452586Z [err]  -------------------
+2026-01-07T13:21:01.348460867Z [err]  ERROR: failed to build: failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 2

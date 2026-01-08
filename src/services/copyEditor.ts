@@ -206,11 +206,11 @@ export async function generateBookContent(
 
       return {
         segmentId: story.segmentId,
-        transcriptText: segment.transcriptText,
-        pullQuotes: segment.pullQuotes,
-        emotionalTone: segment.emotionalTone,
-        recordedDate: segment.call.endedAt
-          ? new Date(segment.call.endedAt).toLocaleDateString('en-GB', {
+        transcriptText: (segment as any).transcriptText,
+        pullQuotes: (segment as any).pullQuotes,
+        emotionalTone: (segment as any).emotionalTone,
+        recordedDate: (segment as any).call.endedAt
+          ? new Date((segment as any).call.endedAt).toLocaleDateString('en-GB', {
               day: 'numeric',
               month: 'long',
               year: 'numeric',
