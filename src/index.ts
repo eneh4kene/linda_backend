@@ -110,7 +110,7 @@ app.use((err: Error, _req: express.Request, res: express.Response, _next: expres
 
 const PORT = parseInt(env.PORT, 10);
 
-httpServer.listen(PORT, () => {
+httpServer.listen(PORT, '0.0.0.0', () => {
   console.log(`🚀 Linda Backend running on port ${PORT}`);
   console.log(`📍 Health check: http://localhost:${PORT}/health`);
   console.log(`🌍 Environment: ${env.NODE_ENV}`);
