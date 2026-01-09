@@ -42,7 +42,18 @@ app.use(cors({
   origin: process.env.FRONTEND_URL || (env.NODE_ENV === 'development' ? '*' : false),
   credentials: true,
 }));
-app.use(express.json());
+
+// Capture raw body for webhook signature verification
+// This must run BEFORE express.json() to get the original body
+app.use('/api/webhooks/retell', express.raw({ type: 'application/json' }));
+
+// JSON parsing middleware (skip webhook routes that use raw body)
+app.use((req, res, next) => {
+  if (req.path === '/api/webhooks/retell' && Buffer.isBuffer(req.body)) {
+    return next(); // Skip JSON parsing for webhook route
+  }
+  express.json()(req, res, next);
+});
 app.use(express.urlencoded({ extended: true }));
 
 // Serve static files (for lifebook demo)

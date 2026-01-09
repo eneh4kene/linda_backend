@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { Router, Request, Response } from 'express';
 import { prisma } from '../lib/prisma';
 import { verifyWebhookSignature } from '../services/retell';
 import { queueProcessCall } from '../queues';
@@ -11,20 +11,32 @@ const router = Router();
 /**
  * POST /api/webhooks/retell
  * Handle Retell webhook events
+ * Note: Raw body middleware is applied in index.ts before express.json()
  */
-router.post('/retell', async (req, res) => {
+router.post('/retell', async (req: Request & { body: Buffer }, res: Response) => {
   try {
-    // Get raw body for signature verification
+    // Get raw body for signature verification (before parsing)
     const signature = req.headers['x-retell-signature'] as string | undefined;
-    const rawBody = JSON.stringify(req.body);
+    const rawBody = req.body.toString('utf8');
+    
+    // Parse the body for processing
+    let event: any;
+    try {
+      event = JSON.parse(rawBody);
+    } catch (parseError) {
+      console.error('Failed to parse webhook body:', parseError);
+      return res.status(400).json({ error: 'Invalid JSON' });
+    }
 
-    // Verify webhook signature
+    // Verify webhook signature using raw body
     if (!verifyWebhookSignature(rawBody, signature)) {
       console.error('Invalid webhook signature');
+      console.error('Signature header:', signature);
+      console.error('Raw body length:', rawBody.length);
+      console.error('Raw body preview:', rawBody.substring(0, 200));
       return res.status(401).json({ error: 'Invalid signature' });
     }
 
-    const event = req.body as any; // Using any because actual webhook structure differs from types
     const eventType = event.event;
     const callData = event.call;
 
