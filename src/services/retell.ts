@@ -94,11 +94,22 @@ export function verifyWebhookSignature(
     hmac.update(payload);
     const expectedSignature = hmac.digest('hex');
 
+    // Retell might send signature with prefix like "sha256="
+    const cleanSignature = signature.replace(/^sha256=/, '');
+
+    // Ensure both buffers are the same length
+    const expectedBuffer = Buffer.from(expectedSignature, 'hex');
+    const receivedBuffer = Buffer.from(cleanSignature, 'hex');
+
+    if (expectedBuffer.length !== receivedBuffer.length) {
+      console.error(`Signature length mismatch: expected ${expectedBuffer.length}, got ${receivedBuffer.length}`);
+      console.error(`Expected signature (hex): ${expectedSignature}`);
+      console.error(`Received signature (cleaned): ${cleanSignature}`);
+      return false;
+    }
+
     // Use timing-safe comparison to prevent timing attacks
-    return crypto.timingSafeEqual(
-      Buffer.from(signature),
-      Buffer.from(expectedSignature)
-    );
+    return crypto.timingSafeEqual(expectedBuffer, receivedBuffer);
   } catch (error) {
     console.error('Error verifying webhook signature:', error);
     return false;

@@ -31,6 +31,9 @@ import callbacksRouter from './routes/callbacks';
 const app = express();
 const httpServer = createServer(app);
 
+// Trust proxy (Railway uses a proxy/load balancer)
+app.set('trust proxy', true);
+
 // Initialize WebSocket
 initializeWebSocket(httpServer);
 

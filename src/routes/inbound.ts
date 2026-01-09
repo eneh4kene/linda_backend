@@ -16,8 +16,26 @@ const router = Router();
 router.post('/retell', async (req, res) => {
     try {
         console.log('🔍 Raw Inbound Body:', JSON.stringify(req.body, null, 2));
-        const { from_number, call_id } = req.body;
+        
+        // Extract from nested structure (Retell sends call_inbound object)
+        const callInbound = req.body.call_inbound || req.body;
+        const from_number = callInbound.from_number;
+        const call_id = callInbound.call_id;
+        
         console.log(`📞 Inbound call received from: ${from_number} (Call ID: ${call_id})`);
+
+        // Only proceed if we have a phone number
+        if (!from_number) {
+            console.warn('⚠️  No from_number in webhook payload');
+            return res.json({
+                call_inbound: {
+                    dynamic_variables: {
+                        caller_name: 'there',
+                        script: 'Hello, this is Linda. I was unable to identify your phone number. Please contact the facility staff for assistance.',
+                    }
+                }
+            });
+        }
 
         // STEP 1: Check if caller is a family member
         const familyMember = await prisma.familyMember.findUnique({
