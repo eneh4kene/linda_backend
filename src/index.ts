@@ -36,7 +36,7 @@ initializeWebSocket(httpServer);
 
 // Middleware
 app.use(cors({
-  origin: process.env.FRONTEND_URL || false, // Reject all CORS if FRONTEND_URL not set
+  origin: process.env.FRONTEND_URL || (env.NODE_ENV === 'development' ? '*' : false),
   credentials: true,
 }));
 app.use(express.json());
