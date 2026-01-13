@@ -4,6 +4,8 @@ dist/
 .env.local
 .env.example
 *.log
+deploy_logs.txt
+buil_logs.txt
 .DS_Store
 .vscode/
 .idea/
